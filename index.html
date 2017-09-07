@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>JS for Accessibility</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+        <a href="#slide" class="skip">Skip to slide</a>
+
+        <nav id="slide-control">
+            <button id="previous-slide" disabled="disabled">Previous slide</button>
+            
+            <span aria-live="polite">Slide <strong id="current-slide-counter">1</strong> of <strong id="total-slide-counter"></strong></span>
+            
+            <button id="next-slide">Next slide</button>
+        </nav>
+        
+        <main id="slide">
+            <!--
+                Insert slides here.
+                One per <article>, in the order you want.
+                They should all have an attribute of hidden except the first one. The script will do the rest!
+            -->
+            <article>
+                <h1>JavaScript for accessibility</h1>
+                <h2>A crash course</h2>
+            </article>
+
+            <article hidden>
+                <a class="jsbin-embed" href="http://jsbin.com/mifoyaf/embed?console">JS Bin on jsbin.com</a>
+            </article>
+            
+            <article hidden>
+                <h2>Instructions</h2>
+                
+                https://openclassrooms.com/courses/learn-the-basics-of-javascript/introduction-to-programming
+            </article>
+            
+            <article hidden>
+                <a class="jsbin-embed" href="http://jsbin.com/poxehux/embed?html,js,output"> on jsbin.com</a>
+            </article>
+
+            <article hidden>bah</article>
+            <article hidden>boof</article>
+        </main>
+        
+        <!-- Styles -->
+        <script src="js/slides.js"></script>
+        <script src="http://static.jsbin.com/js/embed.min.js?4.0.4"></script>
+        
+        <style media="screen" id="iframeheight">
+            iframe { height: auto; }
+        </style>
+    </body>
+</html>
