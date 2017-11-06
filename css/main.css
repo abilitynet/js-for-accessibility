@@ -175,6 +175,36 @@ main {
 
 [tabindex="-1"] { outline: none }
 
+.repl output, .repl input[disabled] {
+    width: 100%;
+    display: block;
+    padding: .4em 1em;
+    border-width: 0 0 1px 0;
+    border-style: solid;
+    border-color: #eee;
+    font-family: "Consolas", monospace;
+}
+
+.repl input[disabled] {
+    color: #888;
+}
+
+.repl output.type-ERROR {
+    color: #cc0000;
+}
+
+.repl output.type-LOG {
+    color: #521ba7;
+}
+
+.repl input[type="text"]:not([disabled]) {
+    width: 90%;
+    padding: .4em 1em;
+    border: 0;
+    background-color: rgb(249, 255, 215);
+    font-family: "Consolas", monospace;
+}
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */
