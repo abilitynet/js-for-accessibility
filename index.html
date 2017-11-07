@@ -9,6 +9,16 @@
 
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
+
+        <!-- JSConsole styles and scripts -->
+        <link rel="stylesheet" href="./jsconsole/bower_components/codemirror/lib/codemirror.css">
+        <link rel="stylesheet" href="./jsconsole/bower_components/codemirror/theme/eclipse.css">
+        <link rel="stylesheet" href="./jsconsole/bower_components/codemirror/theme/base16-dark.css">
+        <link rel="stylesheet" href="./jsconsole/styles/console.css">
+        <script src="./jsconsole/bower_components/codemirror/lib/codemirror.js"></script>
+        <script src="./jsconsole/bower_components/codemirror/mode/javascript/javascript.js"></script>
+        <script src="./jsconsole/dist/console.js"></script>
+
     </head>
     <body>
         <!--[if lte IE 9]>
@@ -17,13 +27,13 @@
         <a href="#slide" class="skip">Skip to slide</a>
 
         <nav id="slide-control">
-            <button id="previous-slide" disabled="disabled">Previous slide</button>
-            
-            <span aria-live="polite">Slide <strong id="current-slide-counter">1</strong> of <strong id="total-slide-counter"></strong></span>
-            
-            <button id="next-slide">Next slide</button>
+            <button id="previous-slide" disabled aria-label="Previous slide">Previous slide</button>
+
+            <span aria-live="polite" aria-atomic="true">Slide <strong id="current-slide-counter" tabindex="0">1</strong> of <strong id="total-slide-counter"></strong></span>
+
+            <button id="next-slide" aria-label="Next slide">Next slide</button>
         </nav>
-        
+
         <main id="slide">
             <!--
                 Insert slides here.
@@ -32,31 +42,168 @@
             -->
             <article>
                 <h1>JavaScript for accessibility</h1>
-                <h2>A crash course</h2>
+                <h2>Basics of JavaScript, what can go wrong and how to fix it</h2>
+                <p>Victor Loux</p>
+
+                <img src="images/abilitynet.jpg" alt="AbilityNet" style="width: 100%; max-width: 300px">
             </article>
 
             <article hidden>
-                <a class="jsbin-embed" href="https://jsbin.com/mifoyaf/embed?console">JS Bin on jsbin.com</a>
+                <img src="images/js.png" alt="" class="float-right">
+                <h2>What is JavaScript?</h2>
+
+                <ul>
+                    <li>The programming language for the Web</li>
+                    <li>A programming language is a way to <strong>give orders</strong> to a computer. It's a bit like a human language, but without ambiguity! Each programming language has vocabulary (keywords that each play a specific role) and grammar (rules defining how to write programs in that language).</li>
+
+                    <!-- There's some nitpicking about whether HTML and CSS are 'programming language' since they're just a specification for publishing, they have no control flow -->
+                    <li>Web pages use 3 main technologies: <strong title="HyperText Markup Language">HTML</strong> define the structure and the content, <strong title="Cascading Style Sheets">CSS</strong> define the styling, <strong title="JavaScript">JS</strong> allows us to add interactivity and dynamic content.</li>
+
+                    <li>Despite the name: not related to Java!</li>
+                </ul>
             </article>
-            
+
+            <article hidden>
+                <img src="images/burrito.jpg" alt="" class="float-right">
+                <h2>What is a program?</h2>
+
+                <p>It's an ordered sequence of operations for solving a given problem. A program breaks down a complex problem into a series of simple operations. Here's a program that makes a burrito:</p>
+
+                <pre>Begin
+    Get out the rice cooker
+    Fill it with rice
+    Fill it with water
+    Cook the rice
+    Chop the vegetables
+    Stir-fry the vegetables
+    Taste-test the vegetables
+        If the veggies are good
+            Remove them from the stove
+        If the veggies aren't good
+            Add more pepper and spices
+        If the veggies aren't cooked enough
+            Keep stir-frying the veggies
+    Heat the tortilla
+    Add rice to tortilla
+    Add vegetables to tortilla
+    Roll tortilla
+End</pre>
+
+                <p>(This is not Javascript!)</p>
+
+                <p>Notice the different types of actions here:</p>
+                <ul>
+                    <li>simple actions ("get out the rice cooker")</li>
+                    <li>conditional actions ("<em>if</em> the veggies are good")</li>
+                    <li>actions that are repeated ("<em>keep</em> stir-frying the veggies")</li>
+                </ul>
+            </article>
+
+            <article hidden id="example-JS-event">
+                <h2>What can you do with JavaScript?</h2>
+
+                <p>The most interesting part of JavaScript is that it allows us to manipulate HTML and CSS in real time, and react to events in the browser. Check out the example below:</p>
+
+                <button>A magic button</button>
+
+                <div class="toggled-box red">This box is red</div>
+                <pre>&lt;div class="<mark>red</mark>"&gt;This box is <mark>red</mark>&lt;/div&gt;</pre>
+
+                <h3>We are doing two things here:</h3>
+                <ul>
+                    <li><strong>listen to the <code>click</code> event</strong> on the <code>&lt;button&gt;</code> element, and run some code when it is clicked</li>
+                    <li>that code <strong>manipulates the HTML of our box</strong> to change the value of its <code>class</code> attribute, and the text it contains.</li>
+                </ul>
+
+                <p>Of course, <strong>this is a simplistic example</strong>, but you can do very complex things with JavaScript, such as loading content in real-time from a server without reloading the entire page, manipulating strings of text, hiding and showing elements on the page (e.g. menus, accordions), create custom interactive widgets, react to user input (keyboard, mouse and touch)&hellip;</p>
+
+                <p>When used correctly, JavaScript can greatly enhance the user experience. But if some users are not taken into consideration, <strong>it can make their experience worse</strong>. In the example above, we don't have live regions, so screen reader users are not aware that the text in the box has changed when they press the button. Another common occurence is working only with a mouse or touch, but not keyboard.</p>
+            </article>
+
             <article hidden>
                 <h2>Instructions</h2>
-                
-                https://openclassrooms.com/courses/learn-the-basics-of-javascript/introduction-to-programming
+
+                <p>Below this paragraph is a console, which allows you to type some JavaScript code and immediately get the result. Try some simple instructions like <code>5&nbsp;+&nbsp;3</code>, or <code>40&nbsp;*&nbsp;28000</code>. To deal with text, you have to wrap it with quotations marks, <code>"like&nbsp;this"</code>. You can concatenate (add) two strings of text with the <code>+</code> operator: try it!</p>
+
+                <div class="console-container">
+                    <div class="console"></div>
+                </div>
             </article>
-            
+
+            <article hidden>
+                <h2>Variables</h2>
+
+                <p>In programming we use a lot of <strong>variables</strong>. These are keywords that retain a certain value, and allows us to avoid duplication, or take data set by the user. Variables, as their name indicate, can change value. Initialise a variable for the first time with the <code>var</code> keyword, followed by its name, then its value. For example <code>var&nbsp;x&nbsp;=&nbsp;4</code>.</p>
+
+                <p>You can change the value of a variable that's already been declared with the <code>=</code> operator. You can then use them in place of a number, for example <code>x + 5</code>.</p>
+
+                <div class="console-container">
+                    <div class="console"></div>
+                </div>
+
+                <p>Variables can take many possible type of values, for instance:</p>
+
+                <ul>
+                    <li>Numbers: for example <code>42</code> or <code>5.2</code></li>
+                    <li>Strings: chains of characters surrounded by quotations marks, for example <code>"apples"</code></li>
+                    <li>Boolean: this is either the values <code>true</code> or <code>false</code>. This is used very often for making logical statements and conditions; and remembering the <strong>state</strong> of something (for example "pressed or not").</li>
+                </ul>
+
+                <p>Try declaring multiple variable and adding them.</p>
+            </article>
+
+            <article hidden id="example-controlflow">
+                <h2>Conditions</h2>
+
+                <p>An important part of programming is having a <strong>control flow</strong>. This is where our program can make <strong>decisions</strong>. The most common way to do this is with an <strong>if-else</strong> statement.</p>
+
+                <pre>If <mark>condition</mark> is true, <em>then</em>
+    do something
+else
+    do something else
+</pre>
+
+                <p>Let's have an example. We will set a variable using the box below, to see if someone is over 18:</p>
+
+                <p><code>var age = </code><input type="number" name="value" length="3" value="15"><code>;</code></p>
+
+                <pre>if(age >= 18) {
+    <mark id="if-true">message = "You are an adult!";</mark>
+} else {
+    <mark id="if-false">message = "Hang on there kiddo, you can't buy alcohol";</mark>
+}</pre>
+
+                <p aria-live="polite"><code>message = <span id="message-result"></span></code></p>
+
+                <p>You can have other conditions with several "else if" nested together. It is also possible to have logical operators like "and" &amp; "or" to combine multiple statements in the same condition. @TODO</p>
+            </article>
+
+            <article hidden>
+                <h2>Instructions</h2>
+
+
+            </article>
+
             <article hidden>
                 <a class="jsbin-embed" href="https://jsbin.com/poxehux/embed?html,js,output"> on jsbin.com</a>
             </article>
 
             <article hidden>bah</article>
             <article hidden>boof</article>
+
+            <article hidden>
+                <h2>Sources and references</h2>
+
+                <ul>
+                    <li><a href="https://openclassrooms.com/courses/learn-the-basics-of-javascript/introduction-to-programming">OpenClassrooms</a></li>
+                </ul>
+            </article>
         </main>
-        
-        <!-- Styles -->
+
+        <!-- Scripts -->
         <script src="js/slides.js"></script>
         <script src="https://static.jsbin.com/js/embed.min.js?4.0.4"></script>
-        
+
         <style media="screen" id="iframeheight">
             iframe { height: auto; }
         </style>

@@ -1,0 +1,3 @@
+[submodule "jsconsole"]
+	path = jsconsole
+	url = https://github.com/jsoverson/jsconsole

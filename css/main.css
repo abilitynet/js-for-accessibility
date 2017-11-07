@@ -117,6 +117,7 @@ textarea {
 nav {
     position: fixed;
     top: 0;
+    z-index: 100;
     width: 100%;
     height: 4em;
     box-shadow: 0px 3px 12px #999;
@@ -128,6 +129,7 @@ nav {
 }
     #current-slide-counter {
         font-size: 1.4em;
+        cursor: pointer;
     }
 
     nav button {
@@ -141,15 +143,15 @@ nav {
         background-color: #2876A7;
         color: #fff;
     }
-    
+
     nav button[disabled] {
         opacity: .4;
     }
-    
+
     nav button:hover, nav button:focus {
         background-color: #2B7FB4;
     }
-    
+
     nav button:focus {
         text-decoration: underline;
         outline: 0;
@@ -169,51 +171,110 @@ nav {
 
 main {
     margin-top: 6em;
+    font-size: 1.4em;
 }
 
+article {
+    margin: 0 4.4% 2em;
+}
 
+    pre {
+        font-size: 1em;
+        background: #eee;
+        padding: .4em .6em;
+        margin-left: -0.6em;
+        border-radius: 7px;
+    }
+
+    p, li, h2, h3, h4, h5, h6 {
+        max-width: 65ch;
+    }
+
+    ul li {
+        margin-bottom: .3em;
+    }
+
+    strong[title] {
+        cursor: help;
+        border-bottom: 1px dotted #888;
+    }
 
 [tabindex="-1"] { outline: none }
 
-.repl output, .repl input[disabled] {
+/* ==========================================================================
+   Example specific classes
+   ========================================================================== */
+.toggled-box {
+    display: inline-block;
+    padding: .3em .6em;
+}
+
+    .red {
+        background: rgb(250, 185, 185);
+    }
+
+    .blue {
+        background: lightblue;
+    }
+
+#example-controlflow input[name="value"] {
+    width: 3em;
+    font-family: monospace;
+}
+
+/* ==========================================================================
+   General code classes
+   ========================================================================== */
+
+pre mark {
+    background: rgb(255, 244, 164);
+}
+    mark.no-flow {
+        background: transparent;
+    }
+
+.console, .console-container {
+    height: 100%;
     width: 100%;
-    display: block;
-    padding: .4em 1em;
-    border-width: 0 0 1px 0;
-    border-style: solid;
-    border-color: #eee;
-    font-family: "Consolas", monospace;
+    border: 1px solid #ccc;
+    border-radius: 8px;
 }
 
-.repl input[disabled] {
-    color: #888;
-}
+    .jsconsole .CodeMirror {
+        /*font-size: 1em !important;*/
+        line-height: 1.3em !important;
+    }
 
-.repl output.type-ERROR {
-    color: #cc0000;
-}
 
-.repl output.type-LOG {
-    color: #521ba7;
-}
-
-.repl input[type="text"]:not([disabled]) {
-    width: 90%;
-    padding: .4em 1em;
-    border: 0;
-    background-color: rgb(249, 255, 215);
-    font-family: "Consolas", monospace;
-}
+    .CodeMirror-focused {
+        background-color: rgb(255, 244, 164) !important;
+    }
 
 /* ==========================================================================
    Helper classes
    ========================================================================== */
 
+.float-right {
+    max-width: 300px;
+}
+
+@media only screen and (min-width: 992px) {
+    .float-right {
+        float: right;
+        max-width: 420px;
+        margin-left: 0.6em;
+    }
+}
+
+.float-left {
+    float: left;
+}
+
 /*
  * Hide visually and from screen readers
  */
 
-.hidden {
+.hidden, [hidden] {
     display: none !important;
 }
 
