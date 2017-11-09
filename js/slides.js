@@ -1,9 +1,22 @@
-// Polyfill for IE
+// Polyfills for IE
 Number.isInteger = Number.isInteger || function(value) {
     return typeof value === 'number' &&
         isFinite(value) &&
         Math.floor(value) === value;
 };
+if (Number.parseInt === undefined)
+    Number.parseInt = window.parseInt;
+
+if (window.NodeList && !NodeList.prototype.forEach) {
+    NodeList.prototype.forEach = function (callback, thisArg) {
+        thisArg = thisArg || window;
+        for (var i = 0; i < this.length; i++) {
+            callback.call(thisArg, this[i], i, this);
+        }
+    };
+}
+
+// ACTUAL CODE!
 
 document.addEventListener("DOMContentLoaded", function() {
     var slides = document.querySelectorAll("main > article");

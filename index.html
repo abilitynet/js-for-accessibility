@@ -69,13 +69,13 @@
 
                 <p>It's an ordered sequence of operations for solving a given problem. A program breaks down a complex problem into a series of simple operations. Here's a program that makes a burrito:</p>
 
-                <pre>Begin
+                <pre><code class="language-none">Begin
     Get out the rice cooker
     Fill it with rice
     Fill it with water
     Cook the rice
     Chop the vegetables
-    Stir-fry the vegetables
+    Stir-fry <mark>the vegetables</mark>
     Taste-test the vegetables
         If the veggies are good
             Remove them from the stove
@@ -87,7 +87,7 @@
     Add rice to tortilla
     Add vegetables to tortilla
     Roll tortilla
-End</pre>
+End</code></pre>
 
                 <p>(This is not Javascript!)</p>
 
@@ -107,7 +107,7 @@ End</pre>
                 <button>A magic button</button>
 
                 <div class="toggled-box red">This box is red</div>
-                <pre>&lt;div class="<mark>red</mark>"&gt;This box is <mark>red</mark>&lt;/div&gt;</pre>
+                <pre><code>&lt;div class="<mark>red</mark>"&gt;This box is <mark>red</mark>&lt;/div&gt;</code></pre>
 
                 <h3>We are doing two things here:</h3>
                 <ul>
@@ -157,39 +157,40 @@ End</pre>
 
                 <p>An important part of programming is having a <strong>control flow</strong>. This is where our program can make <strong>decisions</strong>. The most common way to do this is with an <strong>if-else</strong> statement.</p>
 
-                <pre>If <mark>condition</mark> is true, <em>then</em>
+                <pre><code class="language-none">If <mark>condition</mark> is true, <em>then</em>
     do something
 else
-    do something else
-</pre>
+    do something else</code></pre>
 
                 <p>Let's have an example. We will set a variable using the box below, to see if someone is over 18:</p>
 
                 <p><code>var age = </code><input type="number" name="value" length="3" value="15"><code>;</code></p>
 
-                <pre>if(age >= 18) {
+                <pre><code>if(age >= 18) {
     <mark id="if-true">message = "You are an adult!";</mark>
 } else {
     <mark id="if-false">message = "Hang on there kiddo, you can't buy alcohol";</mark>
-}</pre>
+}</code></pre>
 
                 <p aria-live="polite"><code>message = <span id="message-result"></span></code></p>
+
+                <p>Let's break down the syntax:</p>
+
+                <ul>
+                    <li><code>if (condition)</code> means "if the condition (what is between the parentheses) is true, then execute the following block".</li>
+                    <li><code>age >= 18</code> is the condition: it checks whether the variable <code>age</code> is greater than or equal to 18 (<code>>=</code> is like &ge; in maths). The condition is always a <strong>boolean</strong> expression, i.e. it is either <code>true</code> or <code>false</code>.</li>
+                    <li>The curly braces <code>{ ... }</code> define a <strong>block</strong>. They delimitate the start and end of what we want to run. They're used everywhere in Javascript, not just for conditions.</li>
+                    <li>The <strong>else</strong> statement say "if the condition above was false, then instead of running the block above, run this one instead."</li>
+                </ul>
 
                 <p>You can have other conditions with several "else if" nested together. It is also possible to have logical operators like "and" &amp; "or" to combine multiple statements in the same condition. @TODO</p>
             </article>
 
-            <article hidden>
-                <h2>Instructions</h2>
 
-
-            </article>
-
+            <!--
             <article hidden>
                 <a class="jsbin-embed" href="https://jsbin.com/poxehux/embed?html,js,output"> on jsbin.com</a>
-            </article>
-
-            <article hidden>bah</article>
-            <article hidden>boof</article>
+            </article> -->
 
             <article hidden>
                 <h2>Sources and references</h2>

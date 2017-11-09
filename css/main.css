@@ -226,7 +226,7 @@ article {
    General code classes
    ========================================================================== */
 
-pre mark {
+code mark {
     background: rgb(255, 244, 164);
 }
     mark.no-flow {
