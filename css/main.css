@@ -221,7 +221,10 @@ article {
    General code classes
    ========================================================================== */
 
-code {
+code, .jsconsole .CodeMirror {
+  font-family: "Source Code Pro", Consolas, Meslo, monospace;
+  font-size: .9em;
+  font-weight: 500;
 }
 
 pre {
