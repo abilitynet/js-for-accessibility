@@ -69,13 +69,13 @@
 
                 <p>It's an ordered sequence of operations for solving a given problem. A program breaks down a complex problem into a series of simple operations. Here's a program that makes a burrito:</p>
 
-                <pre><code class="language-none">Begin
+                <pre><code class="nohighlight">Begin
     Get out the rice cooker
     Fill it with rice
     Fill it with water
     Cook the rice
     Chop the vegetables
-    Stir-fry <mark>the vegetables</mark>
+    Stir-fry the vegetables
     Taste-test the vegetables
         If the veggies are good
             Remove them from the stove
@@ -107,7 +107,7 @@ End</code></pre>
                 <button>A magic button</button>
 
                 <div class="toggled-box red">This box is red</div>
-                <pre><code>&lt;div class="<mark>red</mark>"&gt;This box is <mark>red</mark>&lt;/div&gt;</code></pre>
+                <pre><code class="html">&lt;div class="<mark>red</mark>"&gt;This box is <mark>red</mark>&lt;/div&gt;</code></pre>
 
                 <h3>We are doing two things here:</h3>
                 <ul>
@@ -157,7 +157,7 @@ End</code></pre>
 
                 <p>An important part of programming is having a <strong>control flow</strong>. This is where our program can make <strong>decisions</strong>. The most common way to do this is with an <strong>if-else</strong> statement.</p>
 
-                <pre><code class="language-none">If <mark>condition</mark> is true, <em>then</em>
+                <pre><code class="nohighlight">If <mark>condition</mark> is true, <em>then</em>
     do something
 else
     do something else</code></pre>
@@ -172,14 +172,14 @@ else
     <mark id="if-false">message = "Hang on there kiddo, you can't buy alcohol";</mark>
 }</code></pre>
 
-                <p aria-live="polite"><code>message = <span id="message-result"></span></code></p>
+                <p aria-live="polite"><code>message</code> is now "<span id="message-result"></span>".</p>
 
-                <p>Let's break down the syntax:</p>
+                <h3>Let's break down the syntax</h3>
 
                 <ul>
-                    <li><code>if (condition)</code> means "if the condition (what is between the parentheses) is true, then execute the following block".</li>
+                    <li><code>if (<em>condition</em>)</code> means "if the condition (what is between the parentheses) is true, then execute the following block".</li>
                     <li><code>age >= 18</code> is the condition: it checks whether the variable <code>age</code> is greater than or equal to 18 (<code>>=</code> is like &ge; in maths). The condition is always a <strong>boolean</strong> expression, i.e. it is either <code>true</code> or <code>false</code>.</li>
-                    <li>The curly braces <code>{ ... }</code> define a <strong>block</strong>. They delimitate the start and end of what we want to run. They're used everywhere in Javascript, not just for conditions.</li>
+                    <li>The curly braces <code>{ ... }</code> define a <strong>block</strong>. They delimitate the start and end of what we want to run. They're used everywhere in Javascript, not just for conditions. It's also important to know <strong>you can nest them</strong>!</li>
                     <li>The <strong>else</strong> statement say "if the condition above was false, then instead of running the block above, run this one instead."</li>
                 </ul>
 
@@ -202,7 +202,12 @@ else
         </main>
 
         <!-- Scripts -->
+        <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
         <script src="js/slides.js"></script>
+
         <script src="https://static.jsbin.com/js/embed.min.js?4.0.4"></script>
 
         <style media="screen" id="iframeheight">

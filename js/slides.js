@@ -16,9 +16,17 @@ if (window.NodeList && !NodeList.prototype.forEach) {
     };
 }
 
+// Prepare HighlightJS
+hljs.configure({languages: ['javascript', 'html']});
+
 // ACTUAL CODE!
 
 document.addEventListener("DOMContentLoaded", function() {
+    // Run HighlightJS on all <code> tags
+    document.querySelectorAll('code').forEach(function(block) {
+        hljs.highlightBlock(block);
+    });
+
     var slides = document.querySelectorAll("main > article");
 
     // initialise elements

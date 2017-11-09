@@ -178,13 +178,6 @@ article {
     margin: 0 4.4% 2em;
 }
 
-    pre {
-        font-size: 1em;
-        background: #eee;
-        padding: .4em .6em;
-        margin-left: -0.6em;
-        border-radius: 7px;
-    }
 
     p, li, h2, h3, h4, h5, h6 {
         max-width: 65ch;
@@ -222,9 +215,39 @@ article {
     font-family: monospace;
 }
 
+#message-result { font-weight: bold; }
+
 /* ==========================================================================
    General code classes
    ========================================================================== */
+
+code {
+}
+
+pre {
+   font-size: 1em;
+   background: #f3f3f3;
+   padding: .4em .6em;
+   margin-left: -0.6em;
+   border-radius: 7px;
+}
+
+/* Override HLJS */
+code.hljs {
+   display: initial;
+   overflow-x: auto;
+   padding: 0;
+   color: #383a42;
+   background: transparent;
+}
+
+/* inline code which is not inside a <pre> */
+:not(pre) > code.hljs {
+   background: #f3f3f3;
+   border-radius: 3px;
+   padding: .1em .2em;
+}
+
 
 code mark {
     background: rgb(255, 244, 164);
