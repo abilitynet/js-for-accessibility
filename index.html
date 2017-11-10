@@ -129,6 +129,8 @@ End</code></pre>
                 <div class="console-container">
                     <div class="console"></div>
                 </div>
+
+                <p>We will talk more about this later, but you will need to remember that in JavaScript, you need to add a semicolon <code>;</code> after each instruction.</p>
             </article>
 
             <article hidden>
@@ -142,6 +144,8 @@ End</code></pre>
                     <div class="console"></div>
                 </div>
 
+                <h3>Types</h3>
+
                 <p>Variables can take many possible type of values, for instance:</p>
 
                 <ul>
@@ -150,7 +154,11 @@ End</code></pre>
                     <li>Boolean: this is either the values <code>true</code> or <code>false</code>. This is used very often for making logical statements and conditions; and remembering the <strong>state</strong> of something (for example "pressed or not").</li>
                 </ul>
 
-                <p>Try declaring multiple variable and adding them.</p>
+                <p>Try declaring multiple variable and adding them together. See what happens if you add a number to a string, or two strings together!</p>
+
+                <p>You may notice there are some rules about how you can name a variable. Variable names may only contain letters, numbers (but not in the first position) and an underscore (_). See what happens if you try to declare variables called <code>my&nbsp;first&nbsp;name</code>, <code>name-of-the-user</code>, or <code>2nd_favourite_colour</code>.</p>
+
+                <p>It's good practice to give descriptive names, rather than single-letter variables like in maths (<code>x</code>, <code>y</code>, <code>a</code>&hellip;). A common thing to do is using a mix of uppercase and lowercase, for example <code>var myFavouriteFruit = "apple"</code>.</p>
             </article>
 
             <article hidden id="example-controlflow">
@@ -163,9 +171,11 @@ End</code></pre>
 else
     do something else</code></pre>
 
+                <p>The condition is always a <strong>boolean</strong> expression, i.e. it is either <code>true</code> or <code>false</code>. For example, <code>6 + 6 == 3</code> is false, but <code>6 + 6 == 12</code> is true. Of course there is little point in testing fixed values because they will always be true or false, but it becomes interesting with variables as we can change the behaviour dynamically.<p>
+
                 <p>Let's have an example. We will set a variable using the box below, to see if someone is over 18:</p>
 
-                <p><code>var age = </code><input type="number" name="value" length="3" value="15"><code>;</code></p>
+                <p><label><code>var age = </code><input type="number" name="value" length="3" value="15"><code>;</code></label></p>
 
                 <pre><code>if(age >= 18) {
     <mark id="if-true">message = "You are an adult!";</mark>
@@ -179,14 +189,152 @@ else
 
                 <ul>
                     <li><code>if (<em>condition</em>)</code> means "if the condition (what is between the parentheses) is true, then execute the following block".</li>
-                    <li><code>age >= 18</code> is the condition: it checks whether the variable <code>age</code> is greater than or equal to 18 (<code>>=</code> is like &ge; in maths). The condition is always a <strong>boolean</strong> expression, i.e. it is either <code>true</code> or <code>false</code>.</li>
+                    <li><code class="javascript">age >= 18</code> is the condition: it checks whether the variable <code>age</code> is greater than or equal to 18 (<code>>=</code> is like &ge; in maths).</li>
                     <li>The curly braces <code>{ ... }</code> define a <strong>block</strong>. They delimitate the start and end of what we want to run. They're used everywhere in Javascript, not just for conditions. It's also important to know <strong>you can nest them</strong>!</li>
-                    <li>The <strong>else</strong> statement say "if the condition above was false, then instead of running the block above, run this one instead."</li>
+                    <li>The <strong>else</strong> statement say "if the condition above was false, then instead of running the block above, run this one instead." <strong>It is not mandatory</strong> to have an <code>else</code> statement; you can have a condition without it.</li>
                 </ul>
 
-                <p>You can have other conditions with several "else if" nested together. It is also possible to have logical operators like "and" &amp; "or" to combine multiple statements in the same condition. @TODO</p>
+                <h3>More examples</h3>
+
+                <h4>Comparison operators</h4>
+
+                <p>In addition to the greater / lesser than operator (&gt;, &ge;, &lt;, &le;) you will also encounter:</p>
+
+                <pre><code>if(age == 36) { &hellip; }</code></pre>
+
+                <p>This means "if the variable <code>age</code> is <strong>exactly equal to</strong>" 36. Note that to say "equal", we use <strong>two</strong> equal signs; this is because a single equal sign is used for assigning a value to a variable. If we wrote <code>age = 36</code> it would mean "set the variable <code>age</code> to be 36", instead of comparing two values.</p>
+
+                <pre><code>if(favouriteFruit != 'banana') { &hellip; }</code></pre>
+
+                <p>This operator, <code>!=</code>, means <em>not equal to</em> (&ne;). You can use it to say what you <em>don't want</em>: it inverses the result.</p>
+
+                <h4>Nesting</h4>
+                <pre><code>if(age < 18) {
+    if(age >= 16) {
+        if(isHavingAMeal == true) {
+            message = "OK, maybe you can if your parents are here...";
+        }
+    }
+}</code></pre>
+
+                <h4>Else If</h4>
+
+                <p>You can test over more than one condition when using <code>else if(<em>condition</em>)</code>. Conditions are tested in order until one is true; if none of them is true, then it will fall back on the <code>else</code> block.</p>
+
+                <pre><code>if (weather == "sunny") {
+tip = "T-shirt time!";
+} else if (weather == "windy") {
+tip = "Windbreaker life.";
+} else if (weather == "rainy") {
+tip = "Bring that umbrella!";
+} else if (weather == "snowy") {
+tip = "Just stay inside!";
+} else {
+tip = "Not a valid weather type";
+}</code></pre>
+
+                <h4>Nesting</h4>
+
+                <p>Here are are nesting several <code>if</code> statements. This allows us to have several conditions one after the other. If the user is under 18, then we check if they are 16 or over. If they are between 16 and 18, then we can check on another boolean variable (are they having a meal?): and if so we can give them a specific message. But this is a pretty long way to do it: we can also write it as...</p>
+
+                <h4>Logic operators</h4>
+                <pre><code>if(age < 18 <mark>&amp;&amp;</mark> age >= 16 <mark>&amp;&amp;</mark> isHavingAMeal == true) { &hellip; }</code></pre>
+
+                <p>The <code>&amp;&amp;</code> operator means <strong>AND</strong>. We can have expressions on both side of it, and the entire condition will only be true <string>if all</strong> the statements are true: is the user under 18, over 16, and is having a meal? If so, run the block.<br> There is also an operator for OR, which is two pipe signs (<code>||</code>):</p>
+
+                <pre><code>if(favouriteFruit == "orange" || favouriteFruit == "lemon") {
+    message = "Yum! Citrus!";
+}</code></pre>
+
+                <p>The block above will run if <code>favouriteFruit</code> is <strong>either</strong> "orange" or "lemon", but not if it is anything else (like "apple" or "banana").</p>
+
+
+                <h3>Try it!</h3>
+
+                <p>Think you got it? Have a play below!</p>
+
+                <div class="console-container">
+                    <div class="console"></div>
+                </div>
+
+                <p>You can try to:</p>
+                <ul>
+                    <li>Write an if block yourself</li>
+                    <li>Declare some variables and use operators. You don't need to write <em>if</em> around: see what happens if you type <code>7 &lt; 10</code>, <code>a &lt; 16 &amp;&amp; a &gt; 18</code>&hellip;</li>
+                    <li>Write an if-elseif-else statement which prints a different message if a variable is a negative number, zero, or positive.</li>
+                </ul>
             </article>
 
+            <article hidden>
+                <h2>Functions</h2>
+
+                <p>Functions are another important aspect of code. They allow you to repeat the same block of code without having to copy and paste the same code over and over. Functions are first <strong>defined</strong> somewhere, this is when we define what they will do</p>
+
+                <pre><code>function sayHello() {
+    console.println("Hello, AbilityNet!")
+}</code></pre>
+
+                <p>We have the keyword <strong>function</strong> to say what it is (a bit like <code>var</code>), and then the name of the function (<strong>sayHello</strong>), parentheses (we'll talk about these later) and braces to start a <strong>block</strong>, to define the start and end of the function code.<p>
+
+                <p>Once you've defined a function once, you can <strong>call</strong> it later in your program. This is done by using the name of the function with parentheses:</p>
+
+                <pre><code>sayHello();
+sayHello();</code></pre>
+
+                <p>Our console will output:</p>
+
+                <pre><code>Hello, AbilityNet!
+Hello, AbilityNet!</code></pre>
+
+                <p>Functions are interesting because they can also take <strong>arguments</strong>. This means what they do can depend on an input parameter. This is what the parentheses are for: they can contain a list of arguments. Our function <code>sayHello</code> did not have any argument, but we can define them in the definition and the call:</p>
+
+                <pre><code>function double(<mark>number</mark>) {
+    console.log(number * 2);
+}
+
+double(<mark>6</mark>); // 12
+double(<mark>10</mark>); // 20
+double(<mark>0.5</mark>); // 0.25</code></pre>
+
+                <p>(you may note that in the definition, we actually called a function called <code>console.log</code>, with a string as an argument. We'll talk about dots in function names later).</p>
+
+                <p>More arguments can be separated with a comma, like <code>add(number1, number2, number3)</code>. Try to define and call such function that adds 3 numbers below:</p>
+
+                <div class="console-container">
+                    <div class="console"></div>
+                </div>
+
+            </article>
+
+            <article hidden>
+                <h2>Event handlers</h2>
+
+                <p>@TODO</p>
+                <p>Using functions to react to click and buttons, and keyboad inputs. Introduce issues with keyboard accessibility</p>
+            </article>
+
+            <article hidden>
+                <h2>Manipulating HTML from Javascript</h2>
+
+                <p>@TODO</p>
+                <p>Getting more into the meat of JS for accessibility: selecting elements (showing both HTML and JS), and doing things to them. Adding event handlers now that we've got a grasp on them.</p>
+
+                <p>Possibly have a Codepen/JSBin here as a console may not be enough to watch changes in real time to HTML.</p>
+            </article>
+
+            <article hidden>
+                <h2>Moving focus programmatically</h2>
+
+                <p>@TODO</p>
+                <p>Have examples with very visible focus on elements. What can go wrong with it when set programmatically.</p>
+            </article>
+
+            <article hidden>
+                <h2>Basics of ARIA</h2>
+
+                <p>@TODO</p>
+                <p>What it is, what it can do well, what it can do but shouldn't be used to do, and apply it on some examples with JavaScript by changing specific states (building an accordion, and a modal dialog)</p>
+            </article>
 
             <!--
             <article hidden>

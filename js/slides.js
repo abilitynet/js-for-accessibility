@@ -54,16 +54,29 @@ document.addEventListener("DOMContentLoaded", function() {
 
     prevButton.addEventListener("click", function() {
         moveToSlide(currentSlide - 1);
-
-        // Add to history
-        history.pushState({slide: currentSlide}, null, '#slide-' + currentSlide);
     });
 
     nextButton.addEventListener("click", function() {
         moveToSlide(currentSlide + 1);
+    });
 
-        // Add to history
-        history.pushState({slide: currentSlide}, null, '#slide-' + currentSlide);
+    // Create "Go to next slide" buttons for SRs at the end of each slide
+    slides.forEach(function(slide, i) {
+        // Do not display on last slide
+        if(i === slides.length - 1) return;
+
+        // Create button and append it
+        var button = document.createElement('button');
+        button.innerHTML = "Go to next slide";
+        button.classList.add("quick-next-page")
+        button.classList.add("sr-only")
+        slide.appendChild(button);
+
+        // Add event to button
+        // note the ,true) in moveToSlide: it will auto-focus to the next heading
+        button.addEventListener("click", function() {
+            moveToSlide(currentSlide + 1, true);
+        });
     });
 
     // Click to go to slide
@@ -74,7 +87,9 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
 
-    function moveToSlide(slideId) {
+    function moveToSlide(slideId, focusFirstHeading) {
+        focusFirstHeading = focusFirstHeading || false;
+
         // check slide exists
         if(!Number.isInteger(slideId) || slideId < 1 || slideId > slides.length) {
             alert("This slide number does not exist");
@@ -109,8 +124,14 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         // give focus to first heading
-        // slides[currentSlide - 1].tabIndex = -1;
-        // slides[currentSlide - 1].focus();
+        if(focusFirstHeading) {
+            slides[currentSlide - 1].tabIndex = -1;
+            slides[currentSlide - 1].focus();
+        }
+
+
+        // Add to history
+        history.pushState({slide: currentSlide}, null, '#slide-' + currentSlide);
     }
 
     // Handle the browser state on change
