@@ -98,21 +98,16 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
-.skip {
-    position: fixed;
+.focusable.skip:active, .focusable.skip:focus {
+    position: fixed !important;
     left: 2em;
-    top: -2em;
-    background: white;
-    padding: 0.2em 0.5em;
-    border: 2px solid blue;
     z-index: 999;
+    padding: 0.2em 0.5em;
+    background: yellow;
+    border: 2px solid blue;
+    top: 0.2em;
+    outline: 0;
 }
-
-    .skip:focus {
-        background: yellow;
-        top: 0.2em;
-        outline: 0;
-    }
 
 nav {
     position: fixed;

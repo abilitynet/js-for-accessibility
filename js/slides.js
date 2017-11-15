@@ -68,8 +68,9 @@ document.addEventListener("DOMContentLoaded", function() {
         // Create button and append it
         var button = document.createElement('button');
         button.innerHTML = "Go to next slide";
-        button.classList.add("quick-next-page")
-        button.classList.add("sr-only")
+        button.classList.add("quick-next-page");
+        button.classList.add("sr-only");
+        button.classList.add("focusable");
         slide.appendChild(button);
 
         // Add event to button
