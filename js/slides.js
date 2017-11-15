@@ -116,12 +116,20 @@ document.addEventListener("DOMContentLoaded", function() {
             nextButton.setAttribute("disabled", "disabled");
         }
 
-        // Initialise the consolejs in the slide if there's one
+        // Initialise the Jotted Console in the slide if there's one
         // and it's not been initialised already
         var consoleInSlide = slides[currentSlide - 1].querySelector('.console');
-        if(consoleInSlide && !consoleInSlide.classList.contains('jsconsole')) {
-            var repl = new Console(consoleInSlide);
-            repl.wrapLog(console);
+        if(consoleInSlide && !consoleInSlide.classList.contains('jotted')) {
+            new Jotted(consoleInSlide, {
+                pane: 'console',
+                plugins: [{
+                  name: 'console',
+                  options: {
+                    // clear the console on each change
+                    autoClear: true
+                  }
+                }]
+            });
         }
 
         // give focus to first heading

@@ -216,7 +216,7 @@ article {
    General code classes
    ========================================================================== */
 
-code, .jsconsole .CodeMirror {
+code, .jotted .jotted-console-container {
   font-family: "Source Code Pro", Consolas, Meslo, monospace;
   font-size: .9em;
   font-weight: 500;
@@ -254,22 +254,24 @@ code mark {
         background: transparent;
     }
 
-.console, .console-container {
-    height: 100%;
-    width: 100%;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+
+/** Remove the tabs when we only have a console */
+.console.jotted .jotted-nav {
+    display: none;
 }
 
-    .jsconsole .CodeMirror {
-        /*font-size: 1em !important;*/
-        line-height: 1.3em !important;
+    .console.jotted .jotted-pane {
+        padding-top: 0;
     }
 
 
-    .CodeMirror-focused {
-        background-color: rgb(255, 244, 164) !important;
-    }
+.console.jotted li {
+    max-width: initial;
+}
+
+.jotted-console-input input:focus {
+    background-color: rgb(255, 244, 164) !important;
+}
 
 /* ==========================================================================
    Helper classes
