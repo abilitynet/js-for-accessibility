@@ -212,6 +212,12 @@ article {
 
 #message-result { font-weight: bold; }
 
+
+#disable_code_mirror_label {
+    display: block;
+    font-size: .7em;
+    margin-top: 1em;
+}
 /* ==========================================================================
    General code classes
    ========================================================================== */
@@ -254,6 +260,10 @@ code mark {
         background: transparent;
     }
 
+
+.bin.jotted {
+    height: 20em;
+}
 
 /** Remove the tabs when we only have a console */
 .console.jotted .jotted-nav {

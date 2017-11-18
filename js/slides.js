@@ -19,6 +19,16 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 // Prepare HighlightJS
 hljs.configure({languages: ['javascript', 'html']});
 
+// Variable for CodeMirror settings
+// it can be empty, or this, as CodeMirror should be disabled for SR users
+var codemirrorDefaultSettings = {
+    name: 'codemirror',
+    options: {
+        lineNumbers: false
+    }
+};
+var pluginCodeMirror = codemirrorDefaultSettings;
+
 // ACTUAL CODE!
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -37,12 +47,23 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Auto-resizes the height of iframe elements to fit the window height
     // '#iframeheight' is a <style> tag.
-    var updateJSBinHeight = function() {
-      var nh = window.innerHeight - 130;
-      document.getElementById("iframeheight").innerHTML = 'iframe { height: ' + nh + 'px !important; }';
-    };
-    updateJSBinHeight();
-    window.addEventListener("resize", updateJSBinHeight);
+    // var updateJSBinHeight = function() {
+    //   var nh = window.innerHeight - 130;
+    //   document.getElementById("iframeheight").innerHTML = 'iframe { height: ' + nh + 'px !important; }';
+    // };
+    // updateJSBinHeight();
+    // window.addEventListener("resize", updateJSBinHeight);
+
+    // Checkbox to disable CodeMirror in Jotted instances
+    document.querySelector('input[name="disable_code_mirror"]').addEventListener("change", function() {
+       if(this.checked) {
+           console.log('disabled codemirror');
+           pluginCodeMirror = {};
+       } else {
+           console.log('enabled codemirror');
+           pluginCodeMirror = codemirrorDefaultSettings;
+       }
+    });
 
     // initialise the current slide
     var currentSlide = 1;
@@ -128,8 +149,33 @@ document.addEventListener("DOMContentLoaded", function() {
                     // clear the console on each change
                     autoClear: true
                   }
-                }]
+                }, pluginCodeMirror]
             });
+        }
+
+        // Initialise the Jotted Console in the slide if there's one
+        // and it's not been initialised already
+        var binOnSlide = slides[currentSlide - 1].querySelector('.bin');
+        if(binOnSlide && !binOnSlide.classList.contains('jotted')) {
+            new Jotted(binOnSlide, {
+                files: [
+                  {
+                    type: 'html',
+                    content: '<h1>\n  Pen Plugin\n</h1>'
+                  },
+                  {
+                    type: 'js',
+                    content: 'console.log("Hello World")'
+                  },
+                  {
+                    type: 'css',
+                    content: 'body {\n  background: yellow;\n}'
+                  }
+              ], plugins: [
+                  pluginCodeMirror
+              ]
+            });
+            binOnSlide.classList.add('jotted-theme-bin');
         }
 
         // give focus to first heading
