@@ -184,6 +184,8 @@ document.addEventListener("DOMContentLoaded", function() {
             slides[currentSlide - 1].focus();
         }
 
+        // Move scroll to top of page
+        window.scrollTo(0, 0);
 
         // Add to history
         history.pushState({slide: currentSlide}, null, '#slide-' + currentSlide);
