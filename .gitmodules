@@ -1,3 +1,4 @@
 [submodule "jotted"]
 	path = jotted
 	url = https://github.com/victorloux/jotted.git
+  ignore = all
