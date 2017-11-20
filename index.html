@@ -302,23 +302,47 @@ double(<mark>0.5</mark>); // 0.25</code></pre>
 
             </article>
 
+            
+            <article hidden>
+                <h2>Manipulating HTML from Javascript</h2>
+
+                <p>@TODO</p>
+                <p>Getting more into the meat of JS for accessibility: selecting elements (showing both HTML and JS), and doing things to them.</p>
+
+                <div class="bin"></div>
+
+                <p>Talk about objects and methods, which are functions with dots in it (eg element.style.color) Possibly have a Codepen/JSBin here as a console may not be enough to watch changes in real time to HTML.</p>
+            </article>
+
             <article hidden>
                 <h2>Event handlers</h2>
+
+                <p>Now that we've looked at functions and selecting HTML elements, we can start looking at <strong>event handlers.</strong> These are functions called when a specific <strong>event</strong> happens on an element that we've selected; an event can be a <strong>click</strong> (with a mouse, or touch on mobile), a key press, a value changing (e.g. a checkbox becoming unchecked), the mouse simply going over an element (without clicking), etc.</p>
+
+                <p>Consider the following HTML:</p>
+                
+                <pre><code>&lt;button class="magic_button"&gt;Make box bigger&lt;/button&gt;
+
+&lt;div class="box"&gt;&lt;/div&gt;</code></pre>
+
+                <button class="magic_button_off">Make box bigger</button>
+                <div class="box_off"></div>
+
+                <p>Of course, nothing happens yet when you press it. We cannot just set the size of the box in code anywhere, because it would expand immediately and not react to the button. We want to <strong>create a function</strong> that will make the box bigger, say <code>makeBoxBigger()</code>, and <strong>only call this function when the button is pressed</strong>.</p>
+
+                <p>This is done by using <code><em>element</em>.addEventListener(eventType, functionToCall)</code>. This is a method, applied to an element, as we've seen before. It says "keeps listening for <em>eventType</em> on this <em>element</em>. When this type of event happens, then call <em>functionToCall</em>".</p>
+
+                <p>So in our example, we'll have our element called <code>magicButton</code>, the <code>eventType</code> is going to be <code>click</code>, and the function is going to be <code>makeBoxBigger</code>. Let's try below:</p>
+                
+                <p>@TODO Jotter/fiddle with the code above</p>
+                <div class="bin">
+                    <!-- @TODO: assign code to a bin via HTML? -->
+                </div>
 
                 <p>@TODO</p>
                 <p>Using functions to react to click and buttons, and keyboad inputs. Introduce issues with keyboard accessibility</p>
             </article>
 
-            <article hidden>
-                <h2>Manipulating HTML from Javascript</h2>
-
-                <p>@TODO</p>
-                <p>Getting more into the meat of JS for accessibility: selecting elements (showing both HTML and JS), and doing things to them. Adding event handlers now that we've got a grasp on them.</p>
-
-                <div class="bin"></div>
-
-                <p>Possibly have a Codepen/JSBin here as a console may not be enough to watch changes in real time to HTML.</p>
-            </article>
 
             <article hidden>
                 <h2>Moving focus programmatically</h2>
