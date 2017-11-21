@@ -157,21 +157,34 @@ document.addEventListener("DOMContentLoaded", function() {
         // and it's not been initialised already
         var binOnSlide = slides[currentSlide - 1].querySelector('.bin');
         if(binOnSlide && !binOnSlide.classList.contains('jotted')) {
+            // Get content from <code>s
+            var binFiles = [];
+
+            // for every <code class="code-xx"> in this container
+            binOnSlide.querySelectorAll('code').forEach(function(el) {
+              el.classList.remove('hljs');
+              var codeType = el.className.replace('code-', '');
+              var codeContents = '';
+              // Get what's inside the comment (must be the first child)
+              if (el.childNodes.length && el.childNodes[0].nodeType === Node.COMMENT_NODE) {
+            	  codeContents = el.childNodes[0].textContent;
+              }
+
+              // Add to array of files
+              binFiles.push({'type': codeType, 'content': codeContents})
+
+              // Remove temporary code node
+              el.parentNode.removeChild(el);
+            });
+
+            // @TODO: seems to work but 'content' is empty, check why
+            // works at https://codepen.io/vloux/pen/eeMRjR
+            console.log(binFiles);
+
+            // Create the Jotted element with files above
             new Jotted(binOnSlide, {
-                files: [
-                  {
-                    type: 'html',
-                    content: '<h1>\n  Pen Plugin\n</h1>'
-                  },
-                  {
-                    type: 'js',
-                    content: 'console.log("Hello World")'
-                  },
-                  {
-                    type: 'css',
-                    content: 'body {\n  background: yellow;\n}'
-                  }
-              ], plugins: [
+                files: binFiles,
+                plugins: [
                   pluginCodeMirror,
                   'pen'
               ]
