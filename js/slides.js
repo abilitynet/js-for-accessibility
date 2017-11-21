@@ -172,10 +172,10 @@ document.addEventListener("DOMContentLoaded", function() {
                     content: 'body {\n  background: yellow;\n}'
                   }
               ], plugins: [
-                  pluginCodeMirror
+                  pluginCodeMirror,
+                  'pen'
               ]
             });
-            binOnSlide.classList.add('jotted-theme-bin');
         }
 
         // give focus to first heading
