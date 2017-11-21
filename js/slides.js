@@ -180,8 +180,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // give focus to first heading
         if(focusFirstHeading) {
-            slides[currentSlide - 1].tabIndex = -1;
-            slides[currentSlide - 1].focus();
+            var firstHeading = slides[currentSlide - 1].querySelector('h2');
+            firstHeading.tabIndex = -1;
+            firstHeading.focus();
         }
 
         // Move scroll to top of page
