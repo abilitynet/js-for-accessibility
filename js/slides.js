@@ -162,12 +162,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // for every <code class="code-xx"> in this container
             binOnSlide.querySelectorAll('code').forEach(function(el) {
-              el.classList.remove('hljs');
+              el.classList.remove('nohighlight');
               var codeType = el.className.replace('code-', '');
               var codeContents = '';
-              // Get what's inside the comment (must be the first child)
+              // Get what's inside the CData comment (must be the first child)
               if (el.childNodes.length && el.childNodes[0].nodeType === Node.COMMENT_NODE) {
             	  codeContents = el.childNodes[0].textContent;
+              }
+              
+              // Escape HTML comments
+              if(el.classList.contains("code-html")) {
+                  codeContents = codeContents.replace('{--', '<!--');
+                  codeContents = codeContents.replace('--}', '-->');
               }
 
               // Add to array of files
