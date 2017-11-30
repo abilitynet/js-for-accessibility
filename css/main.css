@@ -222,14 +222,14 @@ article {
    General code classes
    ========================================================================== */
 
-code, .jotted .jotted-console-container {
+code, .jotted .jotted-console-container, .jotted-editor textarea {
   font-family: "Source Code Pro", Consolas, Meslo, monospace;
   font-size: .9em;
   font-weight: 500;
   speak: literal-punctuation; /* only works with VO */
 }
 
-pre {
+pre, .example {
    font-size: 1em;
    background: #f3f3f3;
    padding: .4em .6em;
@@ -265,6 +265,7 @@ code mark {
 
 .bin.jotted {
     height: 20em;
+    overflow-y: scroll;
 }
 
 /** Remove the tabs when we only have a console */
