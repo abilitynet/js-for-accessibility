@@ -306,20 +306,79 @@ double(<mark>0.5</mark>); // 0.25</code></pre>
             <article hidden>
                 <h2>Manipulating HTML from Javascript</h2>
 
-                <p>@TODO</p>
-                <p>Getting more into the meat of JS for accessibility: selecting elements (showing both HTML and JS), and doing things to them.</p>
+                <p>We will now start to look at how JavaScript interacts with HTML and CSS. To modify elements on a page, we can first <strong>select</strong> an HTML element, in the same way that we do with CSS. We can then assign this HTML element to a variable, and then do things to that variable, like changing the text inside it, its attributes or CSS properties.</p>
+
+                <h3>Objects</h3>
+
+                <p>When we store an HTML element in a variable, its type is not a string or integer or boolean. It is instead what we call an <strong>object</strong>.</p>
+
+                <p>Objects are a relatively advanced programming concept, but to make it simple, variables that are objects can have their own “<strong>sub-variables</strong>”, which are actually called <em>properties</em>, and their own <strong>functions</strong>, which are called <em>methods</em>.</p>
+
+                <p>On the previous page, we've seen an example of how properties and methods are used: with the <strong>dot notation</strong>. When we used <code>console.log()</code>, we actually used the <em>method</em> (function) called <code>log</code>, from the special object called <code>console</code>. The <code>console</code> object indeed has other methods we could use: <code>warn()</code>, <code>error()</code>…</p>
+
+                <p>Let's take the following HTML example:</p>
+
+                <pre><code>&lt;h2&gt;Opening hours&lt;/h2&gt;
+                
+&lt;h3&gt;Weekdays&lt;/h3&gt;
+&hellip;
+&lt;h3&gt;Weekends&lt;/h3&gt;</code></pre>
+
+                <div class="example"><h2>Opening hours</h2>
+                <h3>Weekdays</h3>
+                &hellip;
+                <h3>Weekends</h3></div>
+
+                <p>Now let's say we have selected the <strong>Weekdays</strong> heading element, and stored it into a variable called <code>weekdaysHeading</code>. This object has properties that will change <strong>only what is in this heading</strong>, and not others. For example, we can do:</p>
+                
+                <pre><code>weekdaysHeading.style.color = "blue";</code></pre>
+                
+                <p>And the result will be:</p>
+                
+                <div class="example"><h2>Opening hours</h2>
+                <h3 style="color:blue">
+                    <span class="sr-only">Blue</span>
+                    Weekdays</h3>
+                &hellip;
+                <h3>Weekends</h3></div>
+
+                <p>Objects allow us to change things independently of other elements.</p>
+
+                <h3>Selecting elements</h3>
+
+                <p>There are many ways to select HTML elements in JavaScript, but the easiest is <code>document.querySelector(<em>selector</em>)</code>, where <code>selector</code> is a string that contains a CSS selector. For example, <code>"#weekends"</code> for the element with an ID of "hidden", <code>".menuBar"</code> for elements with a class of "menuBar", or <code>"h2"</code> for all h2 elements.</p>
+                
+                <p>The one downside of <code>document.querySelector</code> is that it will only select <strong>the first element</strong> that matches the given selector. If there are multiple elements on the page, we would need to use something <code>querySelectorAll</code>, but this requires using loops which we have not seen yet. Anyway, let's try it! Without touching the HTML pane, only the Javascipt code, try to get the second then the third box selected.</p>
 
                 <div class="bin">
-                    <code class="code-html nohighlight"><!-- <h1>
-  Pen Plugin {-- hey --}
-</h1> --></code>
-                    <code class="code-js nohighlight"><!-- console.log("Hello World") --></code>
-                    <code class="code-css nohighlight"><!-- body {
-  background: yellow;
+                    <code class="code-html nohighlight"><!--<h1>My page heading</h1>
+
+<div id="one">First box</div> 
+<div id="two">Second box</div> 
+<div id="three">Third box</div> --></code>
+                    <code class="code-css nohighlight"><!--body {
+  background: lightblue;
+} 
+
+div {
+  border: 2px solid blue;
+  margin-bottom: 5px;
+  padding: 3px
 } --></code>
+                    <code class="code-js nohighlight"><!--// Select an element by ID
+// and store it in a variable
+var myElement = document.querySelector("#one");
+
+// modify the style of that element
+myElement.style.color = "red";
+
+// and its text
+myElement.innerHTML = "Selected element!" --></code>
                 </div>
 
-                <p>Talk about objects and methods, which are functions with dots in it (eg element.style.color) Possibly have a Codepen/JSBin here as a console may not be enough to watch changes in real time to HTML.</p>
+                <h3>Properties and methods for HTML objects</h3>
+                
+                <p>@TODO</p>
             </article>
 
             <article hidden>
@@ -362,18 +421,31 @@ double(<mark>0.5</mark>); // 0.25</code></pre>
 
                 <p>@TODO</p>
                 <p>What it is, what it can do well, what it can do but shouldn't be used to do, and apply it on some examples with JavaScript by changing specific states (building an accordion, and a modal dialog)</p>
+                
+                <p>[Show example of a working widget, then show a wrong widget and get people to fix it!]</p>
             </article>
 
-            <!--
             <article hidden>
-                <a class="jsbin-embed" href="https://jsbin.com/poxehux/embed?html,js,output"> on jsbin.com</a>
-            </article> -->
-
+                <h2>Using the Web Inspector</h2>
+                
+                <p>@TODO</p>
+                <p>? Use a GIF of selecting an element and switching an attribute on/off</p>
+                <p>Using the console in the inspector</p>
+            </article>
+            
             <article hidden>
-                <h2>Sources and references</h2>
+                <h2>Questions?</h2>
 
+                <h3>Doing more testing!</h3>
+                
+                <a href="https://codepen.io">CodePen</a> is a tool similar to those used in here, that allow you to quickly test HTML, CSS and JS in a single screen.
+                
+                <p>The developer tools / web inspector (F12) have a console that will run in the <strong>context</strong> of the page.</p>
+
+                <h3>Sources and references</h3>
                 <ul>
                     <li><a href="https://openclassrooms.com/courses/learn-the-basics-of-javascript/introduction-to-programming">OpenClassrooms</a></li>
+                    <li><a href="http://developer.mozilla.org">Mozilla Developer Network</a></li>
                 </ul>
             </article>
         </main>
