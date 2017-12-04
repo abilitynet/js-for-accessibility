@@ -449,33 +449,39 @@ myElement.innerHTML = "Selected element!" --></code>
             <article hidden>
                 <h2>Moving focus programmatically</h2>
 
-                <p>@TODO</p>
-                    <code class="code-html nohighlight"><!--<h1>My page heading</h1>
+                <p>One important method that we did not talk about yet is the <code>element.focus()</code> method. Calling <code>.focus()</code>, with no arguments, moves the focus to a specific element, just as if the user tabbed onto it.</p>
 
-<div id="one">First box</div> 
-<div id="two">Second box</div> 
-<div id="three">Third box</div> --></code>
-                    <code class="code-css nohighlight"><!--body {
-  background: lightblue;
-} 
+                <div class="bin">
+                    <code class="code-html nohighlight"><!--<h3>Try tabbing on the links below...</h3>
 
-div {
-  border: 2px solid blue;
-  margin-bottom: 5px;
-  padding: 3px
+<a href="">My first link</a>,
+<a href="" id="receiveFocus">my second link</a> and
+<a href="">a third link</a>
+
+
+<p>
+    <button id="giveFocus">
+        Click to give focus to the
+        second element
+    </button>
+</p>--></code>
+                    <code class="code-css nohighlight"><!--a:focus, button:focus {
+    outline: 2px solid orange;
 } --></code>
-                    <code class="code-js nohighlight"><!--// Select an element by ID
-// and store it in a variable
-var myElement = document.querySelector("#one");
+                    <code class="code-js nohighlight"><!--// Store elements in variables
+var giveFocusButton = document.querySelector('#giveFocus');
+var receiveFocusLink = document.querySelector('#receiveFocus');
 
-// modify the style of that element
-myElement.style.color = "red";
-
-// and its text
-myElement.innerHTML = "Selected element!" --></code>
+// Create an event handler
+giveFocusButton.addEventListener("click", function() {
+   // call the .focus() method of our element
+   receiveFocusLink.focus(); 
+});--></code>
                 </div>
                 
-                <p>Have examples with very visible focus on elements. What can go wrong with it when set programmatically.</p>
+                <p>Being able to set focus programmatically can have bad consequences for accessibility: it <strong>breaks predictability</strong> for keyboard and screen reader users, particularly when it is not expected. It can be a breach of SC <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/consistent-behavior-receive-focus.html">3.2.1 On Focus</a> or <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/consistent-behavior-unpredictable-change.html">3.2.2 On Input</a> because it changes context when the user does not expected.</p>
+                
+                <p>However, when used wisely it can be useful! A common example is a modal dialog. Let's see that on the next page&hellip;</p>
             </article>
 
             <article hidden>
