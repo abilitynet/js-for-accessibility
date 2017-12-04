@@ -19,16 +19,19 @@ if (window.NodeList && !NodeList.prototype.forEach) {
 // Prepare HighlightJS
 hljs.configure({languages: ['javascript', 'html']});
 
-// Variable for CodeMirror settings
-// it can be empty, or this, as CodeMirror should be disabled for SR users
-var codemirrorDefaultSettings = {
+// Variable for Ace Editor settings
+// it can be empty, or this, as Ace Editor should be disabled for SR users
+var defaultEditorSettings = {
     name: 'ace',
     options: {
         // wrap: true,
         useWorker: false
     }
 };
-var pluginCodeMirror = codemirrorDefaultSettings;
+var editorSettings = defaultEditorSettings;
+
+// Void plugin if we don't do anything
+Jotted.plugin('noop', function (jotted, options) {});
 
 // ACTUAL CODE!
 
@@ -55,14 +58,14 @@ document.addEventListener("DOMContentLoaded", function() {
     // updateJSBinHeight();
     // window.addEventListener("resize", updateJSBinHeight);
 
-    // Checkbox to disable CodeMirror in Jotted instances
+    // Checkbox to disable Ace Editor in Jotted instances
     document.querySelector('input[name="disable_code_mirror"]').addEventListener("change", function() {
        if(this.checked) {
-           console.log('disabled codemirror');
-           pluginCodeMirror = {};
+           console.log('disabled ace');
+           editorSettings = 'noop';
        } else {
-           console.log('enabled codemirror');
-           pluginCodeMirror = codemirrorDefaultSettings;
+           console.log('enabled ace');
+           editorSettings = defaultEditorSettings;
        }
     });
 
@@ -152,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function() {
                             // clear the console on each change
                             autoClear: true
                           }
-                        }, pluginCodeMirror]
+                        }, editorSettings]
                     });
                 }
             });
@@ -194,8 +197,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     new Jotted(binOnSlide, {
                         files: binFiles,
                         plugins: [
-                          pluginCodeMirror,
-                          'pen'
+                          'pen',
+                          editorSettings
                       ]
                     });
                 }
