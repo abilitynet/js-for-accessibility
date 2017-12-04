@@ -139,61 +139,65 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Initialise the Jotted Console in the slide if there's one
         // and it's not been initialised already
-        var consoleInSlide = slides[currentSlide - 1].querySelector('.console');
-        if(consoleInSlide && !consoleInSlide.classList.contains('jotted')) {
-            new Jotted(consoleInSlide, {
-                pane: 'console',
-                plugins: [{
-                  name: 'console',
-                  options: {
-                    // clear the console on each change
-                    autoClear: true
-                  }
-                }, pluginCodeMirror]
+        var consolesInSlide = slides[currentSlide - 1].querySelectorAll('.console');
+        if(consolesInSlide.length > 0) {
+            consolesInSlide.forEach(function(consoleInSlide) {
+                if(consoleInSlide && !consoleInSlide.classList.contains('jotted')) {
+                    new Jotted(consoleInSlide, {
+                        pane: 'console',
+                        plugins: [{
+                          name: 'console',
+                          options: {
+                            // clear the console on each change
+                            autoClear: true
+                          }
+                        }, pluginCodeMirror]
+                    });
+                }
             });
         }
 
         // Initialise the Jotted Console in the slide if there's one
         // and it's not been initialised already
-        var binOnSlide = slides[currentSlide - 1].querySelector('.bin');
-        if(binOnSlide && !binOnSlide.classList.contains('jotted')) {
-            // Get content from <code>s
-            var binFiles = [];
+        var binsOnSlide = slides[currentSlide - 1].querySelectorAll('.bin');
+        if(binsOnSlide.length > 0) {
+            binsOnSlide.forEach(function(binOnSlide) {
+                if(binOnSlide && !binOnSlide.classList.contains('jotted')) {
+                    // Get content from <code>s
+                    var binFiles = [];
 
-            // for every <code class="code-xx"> in this container
-            binOnSlide.querySelectorAll('code').forEach(function(el) {
-              el.classList.remove('nohighlight');
-              var codeType = el.className.replace('code-', '');
-              var codeContents = '';
-              // Get what's inside the CData comment (must be the first child)
-              if (el.childNodes.length && el.childNodes[0].nodeType === Node.COMMENT_NODE) {
-            	  codeContents = el.childNodes[0].textContent;
-              }
-              
-              // Escape HTML comments
-              if(el.classList.contains("code-html")) {
-                  codeContents = codeContents.replace('{--', '<!--');
-                  codeContents = codeContents.replace('--}', '-->');
-              }
+                    // for every <code class="code-xx"> in this container
+                    binOnSlide.querySelectorAll('code').forEach(function(el) {
+                      el.classList.remove('nohighlight');
+                      var codeType = el.className.replace('code-', '');
+                      var codeContents = '';
+                      // Get what's inside the CData comment (must be the first child)
+                      if (el.childNodes.length && el.childNodes[0].nodeType === Node.COMMENT_NODE) {
+                    	  codeContents = el.childNodes[0].textContent;
+                      }
 
-              // Add to array of files
-              binFiles.push({'type': codeType, 'content': codeContents})
+                      // Escape HTML comments
+                      if(el.classList.contains("code-html")) {
+                          codeContents = codeContents.replace('{--', '<!--');
+                          codeContents = codeContents.replace('--}', '-->');
+                      }
 
-              // Remove temporary code node
-              el.parentNode.removeChild(el);
-            });
+                      // Add to array of files
+                      binFiles.push({'type': codeType, 'content': codeContents})
 
-            // @TODO: seems to work but 'content' is empty, check why
-            // works at https://codepen.io/vloux/pen/eeMRjR
-            console.log(binFiles);
+                      // Remove temporary code node
+                      el.parentNode.removeChild(el);
+                    });
 
-            // Create the Jotted element with files above
-            new Jotted(binOnSlide, {
-                files: binFiles,
-                plugins: [
-                  pluginCodeMirror,
-                  'pen'
-              ]
+                    // Create the Jotted element with files above
+                    new Jotted(binOnSlide, {
+                        files: binFiles,
+                        plugins: [
+                          pluginCodeMirror,
+                          'pen'
+                      ]
+                    });
+                }
             });
         }
 
