@@ -22,7 +22,7 @@ hljs.configure({languages: ['javascript', 'html']});
 // Variable for CodeMirror settings
 // it can be empty, or this, as CodeMirror should be disabled for SR users
 var codemirrorDefaultSettings = {
-    name: 'codemirror',
+    name: 'ace',
     options: {
         lineNumbers: false
     }

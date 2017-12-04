@@ -450,6 +450,31 @@ myElement.innerHTML = "Selected element!" --></code>
                 <h2>Moving focus programmatically</h2>
 
                 <p>@TODO</p>
+                    <code class="code-html nohighlight"><!--<h1>My page heading</h1>
+
+<div id="one">First box</div> 
+<div id="two">Second box</div> 
+<div id="three">Third box</div> --></code>
+                    <code class="code-css nohighlight"><!--body {
+  background: lightblue;
+} 
+
+div {
+  border: 2px solid blue;
+  margin-bottom: 5px;
+  padding: 3px
+} --></code>
+                    <code class="code-js nohighlight"><!--// Select an element by ID
+// and store it in a variable
+var myElement = document.querySelector("#one");
+
+// modify the style of that element
+myElement.style.color = "red";
+
+// and its text
+myElement.innerHTML = "Selected element!" --></code>
+                </div>
+                
                 <p>Have examples with very visible focus on elements. What can go wrong with it when set programmatically.</p>
             </article>
 
@@ -460,6 +485,202 @@ myElement.innerHTML = "Selected element!" --></code>
                 <p>What it is, what it can do well, what it can do but shouldn't be used to do, and apply it on some examples with JavaScript by changing specific states (building an accordion, and a modal dialog)</p>
 
                 <p>[Show example of a working widget, then show a wrong widget and get people to fix it!]</p>
+            </article>
+            
+            <article hidden>
+                <h2>Example: modal dialogs</h2>
+                
+                <p>The following is an inaccessible modal dialog: the focus is not moved, the background receives focus with a screen reader and a keyboard. There is also no label on the close button.</p>
+                
+                <div class="bin">
+                    <code class="code-html nohighlight"><!-- <main id="backgroundContent">
+  <h1>Inaccessible modal dialogs</h1>
+  This is the background content. Pressing <button id="openModalButton">this button</button> will open a new modal dialog. While it's open, you should not be able to read this text with a screen reader, or tab on <a href="#">this link</a> or <input type="text" value="this input field">. But in this example, no effort was made to prevent this however, so screen reader users are able to navigate through the background, and they are not moved directly to the dialog when it opens.
+</main>
+
+<div id="modal" hidden>
+  <h2>This is a modal dialog</h2>
+  
+  {-- the close button has no aria-label here: this is bad practice for screen readers users who will just hear "X, button" --}
+  <button id="closeModalButton">x</button>
+  You're in it. <a href="#">Here's a link</a>, which is harder to tab to for keyboard users -- as the focus remained in the back. Tabbing and SR cursor should be restrained to the contents of this modal dialog for as long as it is open. But they're not because this is not an accessible dialog.
+</div>-->
+                    </code>
+                    <code class="code-css nohighlight"><!--body {
+  font-family: sans-serif;
+}
+
+#modal {
+  position: absolute;
+  width: 50%;
+  top: 8em;
+  left: 25%;
+  
+  padding: 1em;
+
+  background: white;
+  border: 1px solid grey;
+}
+
+#closeModalButton {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  font-size: 1.6em;
+}
+  
+/*
+Make the background visually faint
+In most real-life cases you'd have another overlay div in between
+*/
+.greyed-out {
+  opacity: 0.4;
+}
+
+#modal h2:focus {
+  outline: 0;
+  /* exceptionally this is acceptable here, because it is
+  not an interactive element; we only focus on it programmatically
+  to move the screen reader focus inside the dialog,
+  and announce the first element in it (this heading). 
+  Having an outline could be confusing for sighted kbd users. */
+}--></code>
+                    <code class="code-js nohighlight"><!--var modalDialogContainer = document.querySelectorAll('div#modal')[0];
+var backgroundContainer = document.querySelectorAll('main')[0];
+
+var openModalButton = document.querySelectorAll('#openModalButton')[0];
+var closeModalButton = document.querySelectorAll('#closeModalButton')[0];     
+
+var openDialog = function() {
+  // Make the dialog visible
+  modalDialogContainer.removeAttribute('hidden');
+  backgroundContainer.setAttribute("class", "greyed-out");
+};
+
+var closeDialog = function() {
+  // Hide the dialog
+  modalDialogContainer.setAttribute('hidden', 'hidden');
+  backgroundContainer.removeAttribute("class");
+};
+
+// Event handlers for buttons
+openModalButton.addEventListener("click", openDialog);
+closeModalButton.addEventListener("click", closeDialog); --></code>
+                </div>
+                
+                <p>The following is a <strong>correctly implemented</strong>, accessible dialog:</p>
+
+                <div class="bin">
+                    <code class="code-html nohighlight"><!-- <main id="backgroundContent">
+  <h1>Accessible modal dialogs</h1>
+  This is the background content. Pressing <button id="openModalButton">this button</button> will open a new modal dialog. While it's open, you should not be able to read this text with a screen reader, or tab on <a href="#">this link</a> or <input type="text" value="this input field">. This is because the background div will have an <code>aria-hidden</code> attribute, and all its interactive elements will get a <code>tabindex</code> of -1 to remove them from the focus order.
+</main>
+
+<div id="modal" hidden>
+  {-- here there is a tabindex of -1 to make this h2 focusable programatically, but not with the keyboard --}
+  <h2 tabindex="-1">This is a modal dialog</h2>
+  <button aria-label="Close dialog" id="closeModalButton">x</button>
+  You're in it. <a href="#">Here's a link</a>. Tabbing and SR cursor should be restrained to the contents of this modal dialog for as long as it is open.
+</div> --></code>
+                    <code class="code-css nohighlight"><!--body {
+  font-family: sans-serif;
+}
+
+#modal {
+  position: absolute;
+  width: 50%;
+  top: 8em;
+  left: 25%;
+  
+  padding: 1em;
+
+  background: white;
+  border: 1px solid grey;
+}
+
+#closeModalButton {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  font-size: 1.6em;
+}
+  
+/*
+Make the background visually faint
+In most real-life cases you'd have another overlay div in between
+*/
+#backgroundContent[aria-hidden="true"] {
+  opacity: 0.4;
+}
+
+#backgroundContent[aria-hidden="true"] a,
+#backgroundContent[aria-hidden="true"] button,
+#backgroundContent[aria-hidden="true"] input {
+  pointer-events: none;
+}
+
+#modal h2:focus {
+  outline: 0;
+  /* exceptionally this is acceptable here, because it is
+  not an interactive element; we only focus on it programmatically
+  to move the screen reader focus inside the dialog,
+  and announce the first element in it (this heading). 
+  Having an outline could be confusing for sighted kbd users. */
+}--></code>
+                    <code class="code-js nohighlight"><!--var modalDialogContainer = document.querySelectorAll('div#modal')[0];
+var backgroundContainer = document.querySelectorAll('main')[0];
+
+var openModalButton = document.querySelectorAll('#openModalButton')[0];
+var closeModalButton = document.querySelectorAll('#closeModalButton')[0];     
+
+var openDialog = function() {
+  // Make the dialog visible
+  modalDialogContainer.removeAttribute('hidden');
+  
+  // Make the background element aria-hidden to prevent SR access
+  backgroundContainer.setAttribute('aria-hidden', 'true');
+  
+  // Make the interactive elements in the background div have a tabindex of -1
+  backgroundContainer.querySelectorAll('a, button, input').forEach((el) => {
+    el.setAttribute('tabindex', '-1')
+  });
+  
+  // Give focus to the heading in the newly opened dialog
+  document.querySelectorAll('#modal h2')[0].focus();
+};
+
+var closeDialog = function() {
+  // Hide the dialog
+  modalDialogContainer.setAttribute('hidden', 'hidden');
+  
+  // Make background text visible to SR again
+  backgroundContainer.setAttribute('aria-hidden', 'false');
+  
+  // Return default tabindex values to interactive elements
+  backgroundContainer.querySelectorAll('a, button, input').forEach((el) => {
+    el.removeAttribute('tabindex')
+  });
+  
+  // Give focus back to the element we clicked before the modal opened
+  // This is important for SR users to avoid disorientation,
+  // and for kbd users to avoid having to tab through the whole page again:
+  // our focus is now in a hidden div, so it'll go back to the top of the page otherwise
+  openModalButton.focus();
+};
+
+// Event handlers for buttons
+openModalButton.addEventListener("click", openDialog);
+closeModalButton.addEventListener("click", closeDialog);
+
+// close the dialog when the Esc key is pressed
+document.addEventListener("keyup", function(e) {
+  e = e || window.event;
+  if(e.keyCode === 27) { // ESC
+    closeDialog();
+  }
+});
+--></code>
+                </div>
             </article>
 
             <article hidden>
@@ -490,14 +711,15 @@ myElement.innerHTML = "Selected element!" --></code>
         <!-- Scripts -->
         <link rel="stylesheet"
       href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-light.min.css">
-<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/ace/1.2.9/ace.js" charset="utf-8"></script>
 
         <script src="js/slides.js"></script>
 
         <script src="https://static.jsbin.com/js/embed.min.js?4.0.4"></script>
 
-        <style media="screen" id="iframeheight">
+        <!-- <style media="screen" id="iframeheight">
             iframe { height: auto; }
-        </style>
+        </style> -->
     </body>
 </html>
