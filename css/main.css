@@ -222,6 +222,14 @@ article {
    General code classes
    ========================================================================== */
 
+body .ace_editor {
+  font-family: "Source Code Pro", Consolas, Meslo, monospace;
+}
+
+body .jotted-plugin-ace .ace_editor {
+    height: calc(100% - 4.8em); /* height bug fix */
+}
+
 code, .jotted .jotted-console-container, .jotted-editor textarea {
   font-family: "Source Code Pro", Consolas, Meslo, monospace;
   font-size: .9em;
@@ -265,7 +273,6 @@ code mark {
 
 .bin.jotted {
     height: 20em;
-    overflow-y: scroll;
 }
 
 /** Remove the tabs when we only have a console */

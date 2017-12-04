@@ -24,7 +24,8 @@ hljs.configure({languages: ['javascript', 'html']});
 var codemirrorDefaultSettings = {
     name: 'ace',
     options: {
-        lineNumbers: false
+        // wrap: true,
+        useWorker: false
     }
 };
 var pluginCodeMirror = codemirrorDefaultSettings;
