@@ -319,7 +319,7 @@ double(<mark>0.5</mark>); // 0.25</code></pre>
                 <p>Let's take the following HTML example:</p>
 
                 <pre><code>&lt;h2&gt;Opening hours&lt;/h2&gt;
-                
+
 &lt;h3&gt;Weekdays&lt;/h3&gt;
 &hellip;
 &lt;h3&gt;Weekends&lt;/h3&gt;</code></pre>
@@ -330,11 +330,11 @@ double(<mark>0.5</mark>); // 0.25</code></pre>
                 <h3>Weekends</h3></div>
 
                 <p>Now let's say we have selected the <strong>Weekdays</strong> heading element, and stored it into a variable called <code>weekdaysHeading</code>. This object has properties that will change <strong>only what is in this heading</strong>, and not others. For example, we can do:</p>
-                
+
                 <pre><code>weekdaysHeading.style.color = "blue";</code></pre>
-                
+
                 <p>And the result will be:</p>
-                
+
                 <div class="example"><h2>Opening hours</h2>
                 <h3 style="color:blue">
                     <span class="sr-only">Blue</span>
@@ -347,18 +347,18 @@ double(<mark>0.5</mark>); // 0.25</code></pre>
                 <h3>Selecting elements</h3>
 
                 <p>There are many ways to select HTML elements in JavaScript, but the easiest is <code>document.querySelector(<em>selector</em>)</code>, where <code>selector</code> is a string that contains a CSS selector. For example, <code>"#weekends"</code> for the element with an ID of "hidden", <code>".menuBar"</code> for elements with a class of "menuBar", or <code>"h2"</code> for all h2 elements.</p>
-                
+
                 <p>The one downside of <code>document.querySelector</code> is that it will only select <strong>the first element</strong> that matches the given selector. If there are multiple elements on the page, we would need to use something <code>querySelectorAll</code>, but this requires using loops which we have not seen yet. Anyway, let's try it! Without touching the HTML pane, only the Javascipt code, try to get the second then the third box selected.</p>
 
                 <div class="bin">
                     <code class="code-html nohighlight"><!--<h1>My page heading</h1>
 
-<div id="one">First box</div> 
-<div id="two">Second box</div> 
+<div id="one">First box</div>
+<div id="two">Second box</div>
 <div id="three">Third box</div> --></code>
                     <code class="code-css nohighlight"><!--body {
   background: lightblue;
-} 
+}
 
 div {
   border: 2px solid blue;
@@ -377,8 +377,45 @@ myElement.innerHTML = "Selected element!" --></code>
                 </div>
 
                 <h3>Properties and methods for HTML objects</h3>
-                
-                <p>@TODO</p>
+
+                <p>There are a wide, but limited, amount of properties and methods you can use on objects that represent HTML elements. Most of the time, <strong>they map to the HTML attributes of the element</strong>. For example:</p>
+
+                <ul>
+                    <li><code>element.style</code>, as we've seen above, is an object of its own &mdash; and each of its properties is the equivalent of a CSS property that can be set dynamically. For example <code>element.style.color</code> or <code>element.style.background</code>.</li>
+                    <li>As we've said in the beginning, we cannot have hyphens in a variable or function name, so CSS properties like <code>font-size</code> and <code>margin-top</code> become <code>fontSize</code> and <code>marginTop</code>. The same is true for some attributes that we can set directly on the element: we can set <code>el.tabIndex</code> to modify the <code>tabindex</code> attribute.</li>
+                    <li>To set attributes, the best option is to use the method <code>element.setAttribute(<em>attributeName</em>, <em>value</em>)</code>. For example, if we have a heading <code>&lt;h2&gt;Contact&lt;/h2&gt;</code> and we call <code>myHeading.setAttribute("id",  "call-us")</code>, then the HTML will become <code>&lt;h2 id="call-us"&gt;Contact&lt;/h2&gt;</code>.</li>
+                    <li>You can also get the current value of an attribute, and store it into a variable. For this, use <code>element.getAttribute(<em>attributeName</em>)</code>.</li>
+                </ul>
+
+
+                <h3>Have a play!</h3>
+
+                <div class="bin">
+                    <code class="code-html nohighlight"><!--<h1>My page heading</h1>
+
+<div id="one">First box</div>
+<div id="two">Second box</div>
+<div id="three">Third box</div> --></code>
+                    <code class="code-css nohighlight"><!--body {
+  background: lightblue;
+}
+
+div {
+  border: 2px solid blue;
+  margin-bottom: 5px;
+  padding: 3px
+} --></code>
+                    <code class="code-js nohighlight"><!--// Select an element by ID
+// and store it in a variable
+var myElement = document.querySelector("#one");
+
+// modify the style of that element
+myElement.style.color = "red";
+
+// and its text
+myElement.innerHTML = "Selected element!" --></code>
+                    </div>
+
             </article>
 
             <article hidden>
@@ -421,25 +458,25 @@ myElement.innerHTML = "Selected element!" --></code>
 
                 <p>@TODO</p>
                 <p>What it is, what it can do well, what it can do but shouldn't be used to do, and apply it on some examples with JavaScript by changing specific states (building an accordion, and a modal dialog)</p>
-                
+
                 <p>[Show example of a working widget, then show a wrong widget and get people to fix it!]</p>
             </article>
 
             <article hidden>
                 <h2>Using the Web Inspector</h2>
-                
+
                 <p>@TODO</p>
                 <p>? Use a GIF of selecting an element and switching an attribute on/off</p>
                 <p>Using the console in the inspector</p>
             </article>
-            
+
             <article hidden>
                 <h2>Questions?</h2>
 
                 <h3>Doing more testing!</h3>
-                
+
                 <a href="https://codepen.io">CodePen</a> is a tool similar to those used in here, that allow you to quickly test HTML, CSS and JS in a single screen.
-                
+
                 <p>The developer tools / web inspector (F12) have a console that will run in the <strong>context</strong> of the page.</p>
 
                 <h3>Sources and references</h3>
