@@ -239,6 +239,8 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         // Move scroll to top of page
+        // @TODO: would be nice if it only did this
+        // for unopened slides
         window.scrollTo(0, 0);
 
         // Add to history
