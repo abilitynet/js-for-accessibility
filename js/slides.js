@@ -290,4 +290,30 @@ document.addEventListener("DOMContentLoaded", function() {
     ageInput.addEventListener("input", cflowEventListener);
     ageInput.addEventListener("keyup", cflowEventListener);
     cflowEventListener();
+    
+    // if-elseif example
+    var elseIfControlSlide = document.getElementById('example-controlflow2');
+    var weatherInput = elseIfControlSlide.querySelector('input[name="weather"]');
+    var elseFlowEventListener = function() {
+        var messageResult = elseIfControlSlide.querySelector('#message-result');
+        var tip, weather = weatherInput.value;
+
+        if (weather == "sunny") {
+            tip = "T-shirt time!";
+        } else if (weather == "windy") {
+            tip = "Windbreaker life.";
+        } else if (weather == "rainy") {
+            tip = "Bring that umbrella!";
+        } else if (weather == "snowy") {
+            tip = "Just stay inside!";
+        } else {
+            tip = "Not a valid weather type";
+        }
+
+        messageResult.innerHTML = tip;
+    };
+    weatherInput.addEventListener("change", elseFlowEventListener);
+    weatherInput.addEventListener("input", elseFlowEventListener);
+    weatherInput.addEventListener("keyup", elseFlowEventListener);
+    elseFlowEventListener();
 });

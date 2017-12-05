@@ -195,7 +195,7 @@ else
                 </ul>
             </article>
 
-            <article hidden>
+            <article hidden id="example-controlflow2">
                 <h2>Conditions 2: operators, else if and nesting</h2>
 
                 <h3>Comparison operators</h3>
@@ -226,8 +226,7 @@ else
 
                 <p>You can test over more than one condition when using <code>else if(<em>condition</em>)</code>. Conditions are tested in order until one is true; if none of them is true, then it will fall back on the <code>else</code> block.</p>
 
-                <!-- @TODO: this should be interactive with an input field -->
-
+                <p><label><code>var weather = "<input type="text" name="weather" value="windy">";</code></label></p>
                 <pre><code>if (weather == "sunny") {
     tip = "T-shirt time!";
 } else if (weather == "windy") {
@@ -239,7 +238,7 @@ else
 } else {
     tip = "Not a valid weather type";
 }</code></pre>
-
+                <p aria-live="polite"><code>tip</code> is now "<span id="message-result"></span>".</p>
             </article>
 
             <article hidden>
