@@ -179,6 +179,19 @@ document.addEventListener("DOMContentLoaded", function() {
         if(binsOnSlide.length > 0) {
             binsOnSlide.forEach(function(binOnSlide) {
                 if(binOnSlide && !binOnSlide.classList.contains('jotted')) {
+                    
+                    if(binOnSlide.classList.contains('bin-console')) {
+                        consoleSettings = {
+                          name: 'console',
+                          options: {
+                            // clear the console on each change
+                            autoClear: true
+                          }
+                        };
+                    } else {
+                        consoleSettings = 'noop';
+                    }
+                    
                     // Get content from <code>s
                     var binFiles = [];
 
@@ -209,8 +222,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     new Jotted(binOnSlide, {
                         files: binFiles,
                         plugins: [
-                          'pen',
-                          editorSettings
+                          editorSettings,
+                          consoleSettings,
+                          'pen'
                       ]
                     });
                 }

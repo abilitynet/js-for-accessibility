@@ -259,15 +259,24 @@ else
 
                 <p>Think you got it? Have a play below!</p>
 
-                <!-- @TODO: this should be a JS-only bin -->
-                <div class="console-container">
-                    <div class="console"></div>
+                <div class="bin bin-console">
+                    <code class="code-js nohighlight"><!--// Type "message" in the console to see its value
+
+var message;
+var age = 23;
+
+if(age >= 18) {
+    message = "Hello, fellow adult.";
+} else {
+    message = "Hi kiddo!"
+}
+--></code>
                 </div>
 
                 <p>You can try to:</p>
                 <ul>
                     <li>Write an if block yourself</li>
-                    <li>Declare some variables and use operators. You don't need to write <em>if</em> around: see what happens if you type <code>7 &lt; 10</code>, <code>a &lt; 16 &amp;&amp; a &gt; 18</code>&hellip;</li>
+                    <li>Declare some variables and use operators. You can type expressions directly in the console to see what happens: try <code>7 &lt; 10</code>, <code>a &lt; 16 &amp;&amp; a &gt; 18</code>&hellip;</li>
                     <li>Write an if-elseif-else statement which prints a different message if a variable is a negative number, zero, or positive.</li>
                 </ul>
             </article>
@@ -307,9 +316,13 @@ double(<mark>0.5</mark>); // 0.25</code></pre>
 
                 <p>More arguments can be separated with a comma, like <code>add(number1, number2, number3)</code>. Try to define and call such function that adds 3 numbers below:</p>
 
-                <!-- @TODO: this should be a JS-only bin -->
-                <div class="console-container">
-                    <div class="console"></div>
+                <div class="bin bin-console">
+                    <code class="code-js nohighlight"><!--function add(number1) {
+    console.log(number1);
+}
+
+// This should output 19
+add(6, 10, 3);--></code>
                 </div>
 
             </article>

@@ -237,9 +237,12 @@ body .jotted-plugin-ace .ace_editor {
 
 code, .jotted .jotted-console-container, .jotted-editor textarea {
   font-family: "Source Code Pro", Consolas, Meslo, monospace;
-  font-size: .9em;
   font-weight: 500;
   speak: literal-punctuation; /* only works with VO */
+}
+
+code {
+    font-size: .9em;
 }
 
 pre, .example {
@@ -289,6 +292,8 @@ code mark {
         padding-top: 0;
     }
 
+.bin-console .jotted-pane-result { display: none; }
+.bin-console.jotted-plugin-pen .jotted-pane { height: 100% }
 
 .console.jotted li {
     max-width: initial;
