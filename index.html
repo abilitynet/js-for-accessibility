@@ -470,9 +470,50 @@ magicButton.addEventListener("click", makeBoxBigger);--></code>
 
                 <h3>Issues with keyboard accessibility</h3>
 
-                <p>@TODO: why <code>click</code> only works on interactive elements, what other event types exist for keyboard and touch, how to get the key to generate interactivity</p>
-                
-                <p>Exercise: recreate exercise above but with the left and right arrow keys. Create a function called <code>makeBoxSmaller()</code>.</p>
+                <p>In the example above, even though we used the <code>click</code> event, our button still worked when we pressed the Enter or Space key. This is thanks to a convenience of browsers which fire a click event on keyboard and touch input, <strong>but this only works on inputs and buttons</strong>. If we were to create a custom component, we will have to implement both events independently.</p>
+
+                <p>Other event types exist for keyboard and touch, and more specific events can be useful for special interaction. For example we can use <code>keyup</code> for when a key is released, <code>keydown</code> for when it is pressed, <code>touchstart</code> for when a finger starts pressing the screen&hellip; this allows us to create interactions like drag and drop, or games. For most keyboard-specific handlers, we are also able to get the specific key that was just pressed.</p>
+
+                <p><strong>Exercise time!</strong> Recreate the demo above, but this time we want different interactions on click and on keyboard. Create a function called <code>makeBoxSmaller()</code> by copying the function above and changing the + to a -, and copy the event listener to use a <code>keydown</code> event instead of <code>mousedown</code>.</p>
+
+                <div class="bin">
+                    <code class="code-html nohighlight"><!--<div class="magic_button" tabindex="0" role="button">Click to make bigger, press key to make it smaller</div>
+
+<div class="box">80</div>--></code>
+                    <code class="code-css nohighlight"><!--.magic_button{
+    padding: 3px;
+    display: inline-block;
+    background: #eee;
+    border: 1px solid grey;
+} .box {
+    height: 80px;
+    width: 80px;
+
+    background: lightsalmon;
+    border: 3px solid pink;
+} --></code>
+                    <code class="code-js nohighlight"><!--// Store elements in variables
+var magicButton = document.querySelector('.magic_button');
+var box = document.querySelector('.box');
+
+// Keep track of the size of our box
+var boxSize = 80;
+
+// Create a function that will make our box bigger
+// and store it in a variable!
+var makeBoxBigger = function () {
+   boxSize += 20;
+   box.style.width = boxSize + 'px';
+   box.style.height = boxSize + 'px';
+
+   // Change text inside for screen reader users
+   box.innerHTML = boxSize;
+}
+
+// HERE: copy the function above and make the box smaller
+
+// Create event handlers
+magicButton.addEventListener("mouseup", makeBoxBigger); --></code>
             </article>
 
 
