@@ -438,11 +438,41 @@ myElement.innerHTML = "Selected element!" --></code>
 
                 <p>So in our example, we'll have our element called <code>magicButton</code>, the <code>eventType</code> is going to be <code>click</code>, and the function is going to be <code>makeBoxBigger</code>. Let's try below:</p>
 
-                <p>@TODO Jotter/fiddle with the code above</p>
-                <div class="bin"></div>
+                <div class="bin">
+                    <code class="code-html nohighlight"><!--<button class="magic_button">Make box bigger</button>
 
-                <p>@TODO</p>
-                <p>Using functions to react to click and buttons, and keyboad inputs. Introduce issues with keyboard accessibility</p>
+<div class="box"></div>--></code>
+                    <code class="code-css nohighlight"><!--.box {
+    height: 80px;
+    width: 80px;
+    
+    background: lightsalmon;
+    border: 3px solid pink;
+} --></code>
+                    <code class="code-js nohighlight"><!--// Store elements in variables
+var magicButton = document.querySelector('.magic_button');
+var box = document.querySelector('.box');
+
+// Keep track of the size of our box
+var boxSize = 80;
+
+// Create a function that will make our box bigger
+// and store it in a variable!
+var makeBoxBigger = function () {
+   boxSize += 20;
+   box.style.width = boxSize + 'px';
+   box.style.height = boxSize + 'px';
+}
+
+// Create an event handler
+magicButton.addEventListener("click", makeBoxBigger);--></code>
+                </div>
+
+                <h3>Issues with keyboard accessibility</h3>
+
+                <p>@TODO: why <code>click</code> only works on interactive elements, what other event types exist for keyboard and touch, how to get the key to generate interactivity</p>
+                
+                <p>Exercise: recreate exercise above but with the left and right arrow keys. Create a function called <code>makeBoxSmaller()</code>.</p>
             </article>
 
 
