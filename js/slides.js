@@ -41,6 +41,12 @@ document.addEventListener("DOMContentLoaded", function() {
         hljs.highlightBlock(block);
     });
 
+    // Handle the browser state on change
+    window.addEventListener("popstate", function(e) {
+        var slideId = location.hash.replace("#slide-", "");
+        moveToSlide(parseInt(slideId, 10));
+    }, false);
+
     var slides = document.querySelectorAll("main > article");
 
     // initialise elements
@@ -75,7 +81,13 @@ document.addEventListener("DOMContentLoaded", function() {
     // update the total number of slides "Slide n of X"
     totalSlideCounter.innerHTML = slides.length;
 
-    history.pushState({slide: 1}, null, '#slide-1');
+    if(location.hash) {
+        // Handle the hash on page load
+        var e = new CustomEvent("popstate", {});
+        window.dispatchEvent(e);
+    } else {
+        history.pushState({slide: 1}, null, '#slide-1');
+    }
 
     prevButton.addEventListener("click", function() {
         moveToSlide(currentSlide - 1);
@@ -218,12 +230,6 @@ document.addEventListener("DOMContentLoaded", function() {
         // Add to history
         history.pushState({slide: currentSlide}, null, '#slide-' + currentSlide);
     }
-
-    // Handle the browser state on change
-    window.addEventListener("popstate", function(e) {
-        var slideId = location.hash.replace("#slide-", "");
-        moveToSlide(parseInt(slideId, 10));
-    });
 
     // Handler for Skip to slide link
     var skipLink = document.querySelectorAll(".skip")[0];
