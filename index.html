@@ -132,9 +132,11 @@ End</code></pre>
             <article hidden>
                 <h2>Variables</h2>
 
-                <p>In programming we use a lot of <strong>variables</strong>. These are keywords that retain a certain value, and allows us to avoid duplication, or take data set by the user. Variables, as their name indicate, can change value. Initialise a variable for the first time with the <code>var</code> keyword, followed by its name, then its value. For example <code>var&nbsp;x&nbsp;=&nbsp;4</code>.</p>
+                <p>In programming we use a lot of <strong>variables</strong>. These are “containers” that retain a certain value, and allows us to avoid repetition, or take data set by the user. Variables, as their name indicate, can change value over time.</p>
+                
+                <p>Initialise a variable for the first time with the <code>var</code> keyword, followed by its name, then its value. For example <code>var&nbsp;age&nbsp;=&nbsp;4</code>.</p>
 
-                <p>You can change the value of a variable that's already been declared with the <code>=</code> operator. You can then use them in place of a number, for example <code>x + 5</code>.</p>
+                <p>You can only <strong>initialise</strong> a variable once. To change its value after that, use an equal sign <code>=</code> operator, <strong>without</strong> the <code>var</code> keyword. Once you have variables you can then use them in place of a number, for example <code>age + 5</code>.</p>
 
                 <div class="console-container">
                     <div class="console"></div>
@@ -152,13 +154,15 @@ End</code></pre>
 
                 <p>Try declaring multiple variable and adding them together. See what happens if you add a number to a string, or two strings together!</p>
 
+                <h3>Names</h3>
+
                 <p>You may notice there are some rules about how you can name a variable. Variable names may only contain letters, numbers (but not in the first position) and an underscore (_). See what happens if you try to declare variables called <code>my&nbsp;first&nbsp;name</code>, <code>name-of-the-user</code>, or <code>2nd_favourite_colour</code>.</p>
 
                 <p>It's good practice to give descriptive names, rather than single-letter variables like in maths (<code>x</code>, <code>y</code>, <code>a</code>&hellip;). A common thing to do is using a mix of uppercase and lowercase, for example <code>var myFavouriteFruit = "apple"</code>.</p>
             </article>
 
             <article hidden id="example-controlflow">
-                <h2>Conditions</h2>
+                <h2>Conditions 1: introduction</h2>
 
                 <p>An important part of programming is having a <strong>control flow</strong>. This is where our program can make <strong>decisions</strong>. The most common way to do this is with an <strong>if-else</strong> statement.</p>
 
@@ -189,10 +193,12 @@ else
                     <li>The curly braces <code>{ ... }</code> define a <strong>block</strong>. They delimitate the start and end of what we want to run. They're used everywhere in Javascript, not just for conditions. It's also important to know <strong>you can nest them</strong>!</li>
                     <li>The <strong>else</strong> statement say "if the condition above was false, then instead of running the block above, run this one instead." <strong>It is not mandatory</strong> to have an <code>else</code> statement; you can have a condition without it.</li>
                 </ul>
+            </article>
 
-                <h3>More examples</h3>
+            <article hidden>
+                <h2>Conditions 2: operators, else if and nesting</h2>
 
-                <h4>Comparison operators</h4>
+                <h3>Comparison operators</h3>
 
                 <p>In addition to the greater / lesser than operator (&gt;, &ge;, &lt;, &le;) you will also encounter:</p>
 
@@ -200,11 +206,14 @@ else
 
                 <p>This means "if the variable <code>age</code> is <strong>exactly equal to</strong>" 36. Note that to say "equal", we use <strong>two</strong> equal signs; this is because a single equal sign is used for assigning a value to a variable. If we wrote <code>age = 36</code> it would mean "set the variable <code>age</code> to be 36", instead of comparing two values.</p>
 
-                <pre><code>if(favouriteFruit != 'banana') { &hellip; }</code></pre>
+                <pre><code>if(favouriteFruit != "banana") { &hellip; }</code></pre>
 
                 <p>This operator, <code>!=</code>, means <em>not equal to</em> (&ne;). You can use it to say what you <em>don't want</em>: it inverses the result.</p>
 
-                <h4>Nesting</h4>
+                <h3>Nesting</h3>
+
+                <p>Here are are nesting several <code>if</code> statements. This allows us to have several conditions one after the other. If the user is under 18, then we check if they are 16 or over. If they are between 16 and 18, then we can check on another boolean variable (are they having a meal?): and if so we can give them a specific message. But this is a pretty long way to do it: we can also write it as...</p>
+
                 <pre><code>if(age < 18) {
     if(age >= 16) {
         if(isHavingAMeal == true) {
@@ -213,9 +222,11 @@ else
     }
 }</code></pre>
 
-                <h4>Else If</h4>
+                <h3>Else If</h3>
 
                 <p>You can test over more than one condition when using <code>else if(<em>condition</em>)</code>. Conditions are tested in order until one is true; if none of them is true, then it will fall back on the <code>else</code> block.</p>
+
+                <!-- @TODO: this should be interactive with an input field -->
 
                 <pre><code>if (weather == "sunny") {
     tip = "T-shirt time!";
@@ -229,11 +240,11 @@ else
     tip = "Not a valid weather type";
 }</code></pre>
 
-                <h4>Nesting</h4>
+            </article>
 
-                <p>Here are are nesting several <code>if</code> statements. This allows us to have several conditions one after the other. If the user is under 18, then we check if they are 16 or over. If they are between 16 and 18, then we can check on another boolean variable (are they having a meal?): and if so we can give them a specific message. But this is a pretty long way to do it: we can also write it as...</p>
+            <article hidden>
+                <h2>Conditions 3: logic operators</h2>
 
-                <h4>Logic operators</h4>
                 <pre><code>if(age < 18 <mark>&amp;&amp;</mark> age >= 16 <mark>&amp;&amp;</mark> isHavingAMeal == true) { &hellip; }</code></pre>
 
                 <p>The <code>&amp;&amp;</code> operator means <strong>AND</strong>. We can have expressions on both side of it, and the entire condition will only be true <string>if all</strong> the statements are true: is the user under 18, over 16, and is having a meal? If so, run the block.<br> There is also an operator for OR, which is two pipe signs (<code>||</code>):</p>
@@ -249,6 +260,7 @@ else
 
                 <p>Think you got it? Have a play below!</p>
 
+                <!-- @TODO: this should be a JS-only bin -->
                 <div class="console-container">
                     <div class="console"></div>
                 </div>
@@ -296,6 +308,7 @@ double(<mark>0.5</mark>); // 0.25</code></pre>
 
                 <p>More arguments can be separated with a comma, like <code>add(number1, number2, number3)</code>. Try to define and call such function that adds 3 numbers below:</p>
 
+                <!-- @TODO: this should be a JS-only bin -->
                 <div class="console-container">
                     <div class="console"></div>
                 </div>
@@ -304,47 +317,9 @@ double(<mark>0.5</mark>); // 0.25</code></pre>
 
 
             <article hidden>
-                <h2>Manipulating HTML from Javascript</h2>
+                <h2>Selecting HTML elements from Javascript</h2>
 
                 <p>We will now start to look at how JavaScript interacts with HTML and CSS. To modify elements on a page, we can first <strong>select</strong> an HTML element, in the same way that we do with CSS. We can then assign this HTML element to a variable, and then do things to that variable, like changing the text inside it, its attributes or CSS properties.</p>
-
-                <h3>Objects</h3>
-
-                <p>When we store an HTML element in a variable, its type is not a string or integer or boolean. It is instead what we call an <strong>object</strong>.</p>
-
-                <p>Objects are a relatively advanced programming concept, but to make it simple, variables that are objects can have their own “<strong>sub-variables</strong>”, which are actually called <em>properties</em>, and their own <strong>functions</strong>, which are called <em>methods</em>.</p>
-
-                <p>On the previous page, we've seen an example of how properties and methods are used: with the <strong>dot notation</strong>. When we used <code>console.log()</code>, we actually used the <em>method</em> (function) called <code>log</code>, from the special object called <code>console</code>. The <code>console</code> object indeed has other methods we could use: <code>warn()</code>, <code>error()</code>…</p>
-
-                <p>Let's take the following HTML example:</p>
-
-                <pre><code>&lt;h2&gt;Opening hours&lt;/h2&gt;
-
-&lt;h3&gt;Weekdays&lt;/h3&gt;
-&hellip;
-&lt;h3&gt;Weekends&lt;/h3&gt;</code></pre>
-
-                <div class="example"><h2>Opening hours</h2>
-                <h3>Weekdays</h3>
-                &hellip;
-                <h3>Weekends</h3></div>
-
-                <p>Now let's say we have selected the <strong>Weekdays</strong> heading element, and stored it into a variable called <code>weekdaysHeading</code>. This object has properties that will change <strong>only what is in this heading</strong>, and not others. For example, we can do:</p>
-
-                <pre><code>weekdaysHeading.style.color = "blue";</code></pre>
-
-                <p>And the result will be:</p>
-
-                <div class="example"><h2>Opening hours</h2>
-                <h3 style="color:blue">
-                    <span class="sr-only">Blue</span>
-                    Weekdays</h3>
-                &hellip;
-                <h3>Weekends</h3></div>
-
-                <p>Objects allow us to change things independently of other elements.</p>
-
-                <h3>Selecting elements</h3>
 
                 <p>There are many ways to select HTML elements in JavaScript, but the easiest is <code>document.querySelector(<em>selector</em>)</code>, where <code>selector</code> is a string that contains a CSS selector. For example, <code>"#weekends"</code> for the element with an ID of "hidden", <code>".menuBar"</code> for elements with a class of "menuBar", or <code>"h2"</code> for all h2 elements.</p>
 
@@ -357,11 +332,11 @@ double(<mark>0.5</mark>); // 0.25</code></pre>
 <div id="two">Second box</div>
 <div id="three">Third box</div> --></code>
                     <code class="code-css nohighlight"><!--body {
-  background: lightblue;
+  background: ivory;
 }
 
 div {
-  border: 2px solid blue;
+  border: 2px solid lightblue;
   margin-bottom: 5px;
   padding: 3px
 } --></code>
@@ -370,11 +345,48 @@ div {
 var myElement = document.querySelector("#one");
 
 // modify the style of that element
-myElement.style.color = "red";
+// we'll cover how this works later
+myElement.style.color = "hotpink";
 
-// and its text
+// and change its text
 myElement.innerHTML = "Selected element!" --></code>
                 </div>
+
+            </article>
+            <article hidden>
+                <h2>Manipulating HTML from Javascript: objects</h2>
+
+                <p>When we store an HTML element in a variable, its type is not a string or integer or boolean. It is instead what we call an <strong>object</strong>.</p>
+
+                <p>Objects are a relatively advanced programming concept, but to make it simple, variables that are objects can have their own “<strong>sub-variables</strong>”, which are actually called <em>properties</em>, and their own <strong>functions</strong>, which are called <em>methods</em>.</p>
+
+                <p>On the previous pages, we've seen an example of how properties and methods are used: with the <strong>dot notation</strong>. When we used <code>console.log()</code>, we actually used the <em>method</em> (function) called <code>log</code>, from the special object called <code>console</code>. The <code>console</code> object indeed has other methods we could use: <code>warn()</code>, <code>error()</code>…</p>
+
+                <p>Let's take the following HTML example:</p>
+
+                <pre><code class="nohighlight">&lt;h2&gt;Opening hours&lt;/h2&gt;
+
+<span class="highlight">&lt;h3&gt;Weekdays&lt;/h3&gt;</span>
+&hellip;
+&lt;h3&gt;Weekends&lt;/h3&gt;</code></pre>
+
+                <div class="example"><h2>Opening hours</h2>
+                <h3><span class="highlight">Weekdays</span></h3>
+                &hellip;
+                <h3>Weekends</h3></div>
+
+                <p>Now let's say we have selected the <strong>Weekdays</strong> heading element, and stored it into a variable called <span class="highlight"><code>weekdaysHeading</code></span>. This object has properties that will change <strong>only what is in this heading</strong>, and not others. For example, we can do:</p>
+
+                <pre><code>weekdaysHeading.style.color = "blue";</code></pre>
+
+                <p>And the result will be:</p>
+
+                <div class="example"><h2>Opening hours</h2>
+                <h3 style="color:blue"><span class="sr-only">Blue</span> Weekdays</h3>
+                &hellip;
+                <h3>Weekends</h3></div>
+
+                <p>Objects allow us to change things independently of other elements.</p>
 
                 <h3>Properties and methods for HTML objects</h3>
 
@@ -389,6 +401,8 @@ myElement.innerHTML = "Selected element!" --></code>
 
 
                 <h3>Have a play!</h3>
+                
+                <p>Try to select different elements and set attributes and styles dynamically. For reference, you may want to have a look at the <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Properties_Reference" target="_blank">CSS properties reference<span class="sr-only"> (opens in new window)</span></a> for a list of things to test.</p>
 
                 <div class="bin">
                     <code class="code-html nohighlight"><!--<h1>My page heading</h1>
@@ -397,11 +411,11 @@ myElement.innerHTML = "Selected element!" --></code>
 <div id="two">Second box</div>
 <div id="three">Third box</div> --></code>
                     <code class="code-css nohighlight"><!--body {
-  background: lightblue;
+  background: ivory;
 }
 
 div {
-  border: 2px solid blue;
+  border: 2px solid lightblue;
   margin-bottom: 5px;
   padding: 3px
 } --></code>
@@ -410,7 +424,7 @@ div {
 var myElement = document.querySelector("#one");
 
 // modify the style of that element
-myElement.style.color = "red";
+myElement.style.color = "hotpink";
 
 // and its text
 myElement.innerHTML = "Selected element!" --></code>
@@ -419,7 +433,7 @@ myElement.innerHTML = "Selected element!" --></code>
             </article>
 
             <article hidden>
-                <h2>Event handlers</h2>
+                <h2>Event handlers 1: event listeners</h2>
 
                 <p>Now that we've looked at functions and selecting HTML elements, we can start looking at <strong>event handlers.</strong> These are functions called when a specific <strong>event</strong> happens on an element that we've selected; an event can be a <strong>click</strong> (with a mouse, or touch on mobile), a key press, a value changing (e.g. a checkbox becoming unchecked), the mouse simply going over an element (without clicking), etc.</p>
 
@@ -467,8 +481,10 @@ var makeBoxBigger = function () {
 // Create an event handler
 magicButton.addEventListener("click", makeBoxBigger);--></code>
                 </div>
+            </article>
 
-                <h3>Issues with keyboard accessibility</h3>
+            <article hidden>
+                <h2>Event handlers 2: event types and keyboard accessibility</h2>
 
                 <p>In the example above, even though we used the <code>click</code> event, our button still worked when we pressed the Enter or Space key. This is thanks to a convenience of browsers which fire a click event on keyboard and touch input, <strong>but this only works on inputs and buttons</strong>. If we were to create a custom component, we will have to implement both events independently.</p>
 
