@@ -586,6 +586,53 @@ giveFocusButton.addEventListener("click", function() {
             <article hidden>
                 <h2>Basics of ARIA</h2>
 
+                <p>Let's talk a bit about ARIA. ARIA stands for <strong>Accessible Rich Internet Applications</strong> and is an <strong>extension</strong> of HTML that allows us to make complex web applications and widgets more accessible to people who use Assistive Technology. With ARIA, we can define custom <strong>roles</strong>, <strong>states</strong>, <strong>names</strong> with the value of an element, which allows us to fulfill the success criteria <a href="https://www.w3.org/TR/UNDERSTANDING-WCAG20/ensure-compat-rsv.html" target="_blank">4.1.2 Name, Role, Value<span class="sr-only"> (opens in new window)</span></a> of the WCAG.</p>
+
+                <p>ARIA mostly adds new HTML attributes that start with <code>aria-</code>, as well as the special <code>role</code> attribute. A lot of the possible attributes are in fact already implicit in a lot of existing HTML elements. For example, <code>&lt;h3&gt;</code> is equivalent to writing <code>&lt;div role="heading" aria-level="3"&gt;</code>, and the <code>&lt;nav&gt;</code> element will be treated the same as <code>&lt;div role="navigation"&gt;</code>.</p>
+
+                <p>It would be redundant to write ARIA attributes on elements that already have semantics: and as Heydon Pickering says, <q>ARIA isn't for making HTML accessible, it's for making <em>inaccessible</em> HTML accessible</q>.</p>
+
+                <p>Sometimes, native HTML elements won't cut it, because of complex interactions or implementations. Examples that you will have encountered include <strong>accordions</strong>: the expanded or collapsed state needs to be communicated non-visually, and this can be achieved using <code>aria-expanded</code>. Text that changes elsewhere on the page needs to be announced, with <code>aria-live</code>. Tabs can be made accessible as such by using <code>role="tab"</code> and <code>aria-selected</code>, despite not having any native element for them in HTML.</p>
+
+                <p>@TODO: turn this into an exercise -- have to add the attribute?</p>
+
+                <div class="bin">
+                    <code class="code-html nohighlight"><!--<button id="expand_data" aria-expanded="false">View more data</button>
+
+<div id="my_data" hidden>
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut accusantium esse praesentium ducimus minus, maxime cum sit voluptatum assumenda a amet at perferendis officiis optio quisquam quos officia eligendi asperiores!
+</table> --></code>
+    <code class="code-css nohighlight"><!-- #my_data {
+  border: 1px solid blue;
+  padding: .4em;
+  margin-top: 1em
+}
+
+/* quick hack to show arrows in CSS */
+button[aria-expanded="false"]::after {
+  content: " ▼"
+}
+
+button[aria-expanded="true"]::after {
+  content: " ▲"
+}--></code>
+    <code class="code-js nohighlight"><!--var expandButton = document.querySelector('#expand_data');
+var myData = document.querySelector('#my_data');
+
+expandButton.addEventListener('click', function() {
+  // This will invert the value of the hidden attribute
+  myData.hidden = !myData.hidden;
+
+  // we update the value of aria-expanded
+  if(myData.hidden) {
+    this.setAttribute('aria-expanded', "false");
+  } else {
+      this.setAttribute('aria-expanded', "true");
+  }
+});
+--></code>
+                </div>
+
                 <p>@TODO</p>
                 <p>What it is, what it can do well, what it can do but shouldn't be used to do, and apply it on some examples with JavaScript by changing specific states (building an accordion, and a modal dialog)</p>
 
