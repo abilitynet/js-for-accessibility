@@ -132,14 +132,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 
-    // Click to go to slide
-    // @TODO: remove element for final version
-    currentSlideCounter.addEventListener("click", function() {
-       var pageNumber = prompt("Enter a slide number to skip to:");
-       if(pageNumber) moveToSlide(Number.parseInt(pageNumber, 10));
-    });
-
-
     function moveToSlide(slideId, focusFirstHeading) {
         focusFirstHeading = focusFirstHeading || false;
 
