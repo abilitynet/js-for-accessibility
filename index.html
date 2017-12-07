@@ -150,6 +150,7 @@ End</code></pre>
                     <li>Numbers: for example <code>42</code> or <code>5.2</code></li>
                     <li>Strings: chains of characters surrounded by quotations marks, for example <code>"apples"</code></li>
                     <li>Boolean: this is either the values <code>true</code> or <code>false</code>. This is used very often for making logical statements and conditions; and remembering the <strong>state</strong> of something (for example "pressed or not").</li>
+                    <li>Objects. We will talk about these later, but they are sort of “containers” that can contain variables and functions. You will see dots to access what's in an object, for example <code>person.name</code>.</li>
                 </ul>
 
                 <p>Try declaring multiple variable and adding them together. See what happens if you add a number to a string, or two strings together!</p>
@@ -370,7 +371,13 @@ myElement.innerHTML = "Selected element!" --></code>
 
                 <p>When we store an HTML element in a variable, its type is not a string or integer or boolean. It is instead what we call an <strong>object</strong>.</p>
 
-                <p>Objects are a relatively advanced programming concept, but to make it simple, variables that are objects can have their own “<strong>sub-variables</strong>”, which are actually called <em>properties</em>, and their own <strong>functions</strong>, which are called <em>methods</em>.</p>
+                <p>Objects are a relatively advanced programming concept, but to make it simple, variables that are objects can have their own “<strong>sub-variables</strong>”, which are actually called <em>properties</em>, and their own <strong>functions</strong>, which are called <em>methods</em>. If we had an object called <code>person</code>, we might have:</p>
+                
+                <ul>
+                    <li><code>person.name</code>, a property</li>
+                    <li><code>person.age</code>, another property</li>
+                    <li><code>person.sendMessage("Hey!")</code>, a method</li>
+                </ul>
 
                 <p>On the previous pages, we've seen an example of how properties and methods are used: with the <strong>dot notation</strong>. When we used <code>console.log()</code>, we actually used the <em>method</em> (function) called <code>log</code>, from the special object called <code>console</code>. The <code>console</code> object indeed has other methods we could use: <code>warn()</code>, <code>error()</code>…</p>
 
