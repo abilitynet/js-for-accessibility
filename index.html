@@ -633,10 +633,34 @@ expandButton.addEventListener('click', function() {
 }); --></code>
                 </div>
 
-                <p>@TODO</p>
-                <p>What it is, what it can do well, what it can do but shouldn't be used to do, and apply it on some examples with JavaScript by changing specific states (building an accordion, and a modal dialog)</p>
+                <p>Have a look at the code and now try to make the toggle button below accessible. At the moment, screen reader users do not know whether it is pressed or not; there is only a visual cue. Hint: use <code>aria-pressed</code>.</p>
 
-                <p>[Show example of a working widget, then show a wrong widget and get people to fix it!]</p>
+                <div class="bin">
+                    <code class="code-html nohighlight"><!--<button id="pressable">I can be pushed!</button>--></code>
+    <code class="code-css nohighlight"><!-- #pressable {
+    border: 4px outset salmon;
+    font-size: 2em;
+    background-color: lightsalmon;
+}
+
+#pressable.pressed {
+    border: 4px inset salmon;
+    font-size: 2em;
+    background-color: darksalmon;
+}
+--></code>
+    <code class="code-js nohighlight"><!--var pressableButton = document.querySelector('#pressable');
+
+// Here we edit an attribute directly:
+// element.className edits the "class" attribute in CSS
+pressableButton.addEventListener('click', function() {
+  if(pressableButton.className == "") {
+    pressableButton.className = "pressed";
+  } else {
+    pressableButton.className = "";
+  }
+}); --></code>
+                </div>
             </article>
 
             <article hidden>
