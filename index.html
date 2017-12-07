@@ -214,8 +214,8 @@ else
 
                 <p>Here are are nesting several <code>if</code> statements. This allows us to have several conditions one after the other. If the user is under 18, then we check if they are 16 or over. If they are between 16 and 18, then we can check on another boolean variable (are they having a meal?): and if so we can give them a specific message. But this is a pretty long way to do it: we can also write it as...</p>
 
-                <pre><code>if(age < 18) {
-    if(age >= 16) {
+                <pre><code>if(age &lt; 18) {
+    if(age &gt;= 16) {
         if(isHavingAMeal == true) {
             message = "OK, maybe you can if your parents are here...";
         }
@@ -244,7 +244,7 @@ else
             <article hidden>
                 <h2>Conditions 3: logic operators</h2>
 
-                <pre><code>if(age < 18 <mark>&amp;&amp;</mark> age >= 16 <mark>&amp;&amp;</mark> isHavingAMeal == true) { &hellip; }</code></pre>
+                <pre><code>if(age &lt; 18 <mark>&amp;&amp;</mark> age &gt;= 16 <mark>&amp;&amp;</mark> isHavingAMeal == true) { &hellip; }</code></pre>
 
                 <p>The <code>&amp;&amp;</code> operator means <strong>AND</strong>. We can have expressions on both side of it, and the entire condition will only be true <string>if all</strong> the statements are true: is the user under 18, over 16, and is having a meal? If so, run the block.<br> There is also an operator for OR, which is two pipe signs (<code>||</code>):</p>
 
