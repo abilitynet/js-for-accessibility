@@ -186,7 +186,7 @@ document.addEventListener("DOMContentLoaded", function() {
         if(binsOnSlide.length > 0) {
             binsOnSlide.forEach(function(binOnSlide) {
                 if(binOnSlide && !binOnSlide.classList.contains('jotted')) {
-                    
+
                     if(binOnSlide.classList.contains('bin-console')) {
                         consoleSettings = {
                           name: 'console',
@@ -198,7 +198,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     } else {
                         consoleSettings = 'noop';
                     }
-                    
+
                     // Get content from <code>s
                     var binFiles = [];
 
@@ -313,7 +313,7 @@ document.addEventListener("DOMContentLoaded", function() {
     ageInput.addEventListener("input", cflowEventListener);
     ageInput.addEventListener("keyup", cflowEventListener);
     cflowEventListener();
-    
+
     // if-elseif example
     var elseIfControlSlide = document.getElementById('example-controlflow2');
     var weatherInput = elseIfControlSlide.querySelector('input[name="weather"]');
