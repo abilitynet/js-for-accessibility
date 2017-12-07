@@ -593,29 +593,21 @@ giveFocusButton.addEventListener("click", function() {
                 <p>It would be redundant to write ARIA attributes on elements that already have semantics: and as Heydon Pickering says, <q>ARIA isn't for making HTML accessible, it's for making <em>inaccessible</em> HTML accessible</q>.</p>
 
                 <p>Sometimes, native HTML elements won't cut it, because of complex interactions or implementations. Examples that you will have encountered include <strong>accordions</strong>: the expanded or collapsed state needs to be communicated non-visually, and this can be achieved using <code>aria-expanded</code>. Text that changes elsewhere on the page needs to be announced, with <code>aria-live</code>. Tabs can be made accessible as such by using <code>role="tab"</code> and <code>aria-selected</code>, despite not having any native element for them in HTML.</p>
-
-                <p>@TODO: turn this into an exercise -- have to add the attribute?</p>
+                
+                <p>Here's an example of an accordion button. Sometime ARIA elements need to remain the same and are set in HTML only, but sometimes they need to be changed in JS for it to make sense:</p>
 
                 <div class="bin">
-                    <code class="code-html nohighlight"><!--<button id="expand_data" aria-expanded="false">View more data</button>
+                    <code class="code-html nohighlight"><!--<button id="expand_data" aria-expanded="false">View more data ▼</button>
 
 <div id="my_data" hidden>
   Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut accusantium esse praesentium ducimus minus, maxime cum sit voluptatum assumenda a amet at perferendis officiis optio quisquam quos officia eligendi asperiores!
-</table> --></code>
+</div> --></code>
     <code class="code-css nohighlight"><!-- #my_data {
   border: 1px solid blue;
   padding: .4em;
   margin-top: 1em
 }
-
-/* quick hack to show arrows in CSS */
-button[aria-expanded="false"]::after {
-  content: " ▼"
-}
-
-button[aria-expanded="true"]::after {
-  content: " ▲"
-}--></code>
+--></code>
     <code class="code-js nohighlight"><!--var expandButton = document.querySelector('#expand_data');
 var myData = document.querySelector('#my_data');
 
@@ -625,12 +617,13 @@ expandButton.addEventListener('click', function() {
 
   // we update the value of aria-expanded
   if(myData.hidden) {
-    this.setAttribute('aria-expanded', "false");
+    expandButton.setAttribute('aria-expanded', "false");
+    expandButton.innerHTML = "View more data ▼";
   } else {
-      this.setAttribute('aria-expanded', "true");
+    expandButton.setAttribute('aria-expanded', "true");
+    expandButton.innerHTML = "View more data ▲";
   }
-});
---></code>
+}); --></code>
                 </div>
 
                 <p>@TODO</p>
